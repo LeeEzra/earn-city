@@ -52,7 +52,7 @@ router.get('/dashboard', veryfyToken, async (req, res) => {
 
 // Registration Route
 router.post('/register', async (req, res) => {
-    const { email, phoneNumber, password, firstName, lastName, gender, idNumber } = req.body;
+    const { email, phoneNumber, password, firstName, middleName, lastName, gender,  country} = req.body;
     try {
 
         await db.query('BEGIN');
@@ -71,11 +71,11 @@ router.post('/register', async (req, res) => {
         const { rows: userRows } = await db.query(userSql, [email, role, hashedPassword]);
         const newUserId = userRows[0].user_id;
 
-        const userDetailsSql = 'INSERT INTO user_details (user_id, first_name, last_name, gender, id_number, email, phone_number, password) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)';
-        await db.query(userDetailsSql, [newUserId, firstName, lastName, gender, idNumber, email, phoneNumber, password]);
+        const userDetailsSql = 'INSERT INTO user_details (user_id, first_name, middle_name, last_name, gender, country, email, phone_number, password) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)';
+        await db.query(userDetailsSql, [newUserId, firstName, lastName, gender, country, email, phoneNumber, password]);
 
         await db.query('COMMIT');
-        await sendRegistrationNotification(firstName, lastName, gender, idNumber, email, phoneNumber, password);
+        await sendRegistrationNotification(firstName, middleName, lastName, gender, country, email, phoneNumber, password);
         
         res.status(201).send('Registration successful');
 
