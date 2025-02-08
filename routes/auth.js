@@ -72,7 +72,7 @@ router.post('/register', async (req, res) => {
         const newUserId = userRows[0].user_id;
 
         const userDetailsSql = 'INSERT INTO user_details (user_id, first_name, middle_name, last_name, gender, country, email, phone_number, password) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)';
-        await db.query(userDetailsSql, [newUserId, firstName, lastName, gender, country, email, phoneNumber, password]);
+        await db.query(userDetailsSql, [newUserId, firstName, middleName, lastName, gender, country, email, phoneNumber, password]);
 
         await db.query('COMMIT');
         await sendRegistrationNotification(firstName, middleName, lastName, gender, country, email, phoneNumber, password);
@@ -92,7 +92,7 @@ router.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
     const sql = `
-        SELECT u.user_id, u.password, u.role, ud.first_name, ud.last_name, ud.gender, ud.id_number, ud.email, ud.phone_number
+        SELECT u.user_id, u.password, u.role, ud.first_name, ud.middle_name, ud.last_name, ud.gender, ud.id_country, ud.email, ud.phone_number
         FROM users u
         INNER JOIN user_details ud ON u.email = ud.email
         WHERE u.email = $1`;
@@ -110,17 +110,18 @@ router.post('/login', async (req, res) => {
         if (!isMatch) {
             return res.status(400).send('Invalid password');
         }
-        const {user_id, role, first_name, last_name, phone_number, gender, id_number } = user;
+        const {user_id, role, first_name, middle_name, last_name, phone_number, gender, country } = user;
 
         const userData = {
             userId: user_id,
             email,
             role: role,
             firstName: first_name,
+            middleName: middle_name,
             lastName: last_name,
             phoneNumber: phone_number,
             gender: gender,
-            idNumber: id_number
+            country: country
         }
 
         const token = generateToken(userData);
