@@ -157,7 +157,7 @@ const UserContent = () => {
                 onClick={handleSubmitAll}
                 className="form-dashboard-button"
               >
-                Submit Responses
+                Submit
               </button>
             </div>
           </div>
