@@ -1,0 +1,19 @@
+@font-face {
+  font-family: 'GoogleSans';
+  src: url(./fonts/GoogleSans-Regular.ttf) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'DMSans';
+  src: url(./fonts/DMSans-Variable.ttf) format('truetype');
+}
+body {
+  margin: 0;
+  font-style: normal;
+  font-family: 'DMSans', sans-serif;
+}
+
+code {
+  font-family: monospace; 
+}

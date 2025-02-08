@@ -1,0 +1,20 @@
+{
+  "short_name": "Viusasa",
+  "name": "Jipange na Viusasa",
+  "icons": [
+    {
+      "src": "favico.png",
+      "sizes": "190x180",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo.png",
+      "type": "image/png",
+      "sizes": "190x180"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#Ca76d18c",
+  "background_color": "#ffffff"
+}

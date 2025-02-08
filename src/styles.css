@@ -1,0 +1,431 @@
+:root {
+    --bg: #fcf5f5;
+    --navbar-bg: #ffeff2;
+    --navbar-text: #000000;
+    --text-gen: rgb(0, 0, 0);
+    --dropdown-bg: #cce9e7de;
+    --dropdown-text: #0a0a0a;
+    --dropdown-hover-bg: #e6d9d9;
+    --dash-btns: rgb(87, 160, 255);
+    --dash-btns-hover: rgb(53, 133, 253);
+    --shadow-color: rgba(0, 0, 0, 0.589);
+    --sinking-shadowing-color: rgba(0, 0, 0, 0.589);
+    --formbutton-color: #007BFF;
+    --header-color: #333;
+    --form-text-color: #051527;
+    --form-input-border: #ccc;
+    --input-bg: rgb(248, 243, 243);
+    --disabled-input-bg: #000000;
+    --form-bg-color: #c7fffc;
+    --input-focus: #007BFF;
+    --icons-filter: invert(100%);
+    --nav-menu-bg: #ffe9f3;
+    --user-card-bg: #fff;
+    --user-card-header-bg: #007BFF;
+    --user-card-header-color: rgb(255, 255, 255);
+
+}
+[data-theme="dark"] {
+    --bg: #0d1117;
+    --navbar-bg: #12171f;
+    --navbar-text: #f0f0f0;
+    --text-gen: #f0f0f0;
+    --dropdown-bg: #12171f94;
+    --dropdown-text: #f0f0f0;
+    --dropdown-hover-bg: #191f29;
+    --shadow-color: rgb(0, 0, 0);
+    --sinking-shadowing-color: rgb(135, 147, 150);
+    --header-color: #adabab;
+    --formbutton-color: #238af1;
+    --form-text-color: rgb(188, 241, 248);
+    --input-bg: #2d2d2d;
+    --input-focus: #007BFF;
+    --disabled-input-bg: #ffffff;
+    --form-input-border: rgb(20, 20, 20);
+    --form-bg-color: #131922;
+    --icons-filter: invert(10%);
+    --nav-menu-bg: #12171f;
+    --user-card-bg: #1c1e1f67;
+    --user-card-header-bg: #111f2e;
+    --user-card-header-color: rgb(255, 255, 255);
+
+
+}
+@font-face {
+    font-family: 'GoogleSans';
+    src: url(./fonts/GoogleSans-Regular.ttf) format('ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'DMSans';
+    src: url(./fonts/DMSans-Variable.ttf) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+body {
+    font-family: 'DMSans', sans-serif;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0;
+    max-height: max-content;
+    background-color: var(--bg);
+    text-align: center;
+    align-items: center;
+    padding: 5px;
+    transition: background-color 1s;
+}
+.navbar {
+    display: flex;
+    flex-direction: row;
+    background-color: var(--navbar-bg);
+    width: 100vw;
+    position: fixed;
+    box-shadow: 0 0 10px var(--shadow-color);
+    top: 0;
+    left: 0;
+    height: auto;
+    flex-direction: row;
+    text-align: center;
+    transition: background-color 1s;
+
+}
+.profile {
+    display: flex;
+    text-align: left;
+    max-width: max-content;
+    padding: 2px;
+    position: relative;
+    flex-direction: row;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    box-shadow: inset 0 0 10px var(--shadow-color);
+    top: 0;
+    left: 0;
+    font-size: medium;
+    height: max-content;
+}
+.profile-img{
+    position: relative;
+    height: 25px;
+    width: 25px;
+    padding: 3px;
+    top: 1px;
+}
+.profile-names {
+    font-size: 15px;
+    color: var(--navbar-text);
+    margin-left: auto;
+}
+.profile-adm {
+    font-size: 12px;
+    color: var(--text-gen);
+    padding-right: 8px;
+}
+.controls-btns {
+    display: flex;
+    flex-direction: row-reverse;
+    right: 0;
+    position: fixed;
+}
+
+.theme-button, .nav-toggle, .power-opt {
+    height: 40px;
+    width: 40px;
+    position: relative;
+    padding-top: 2px;
+}
+.theme-icon, .nav-toggle-icon, .power-opt-icon {
+    filter: var(--icons-filter);
+    padding: 4px;
+    cursor: pointer;
+}
+.nav-container {
+    position: fixed;
+    right: -250px;
+    top: 0;
+    width: 250px;
+    height: 100%;
+    background-color: var(--nav-menu-bg);
+    transition: right 0.3s;
+    box-shadow: 0 0 10px var(--shadow-color);
+}
+.nav-container.active {
+    right: 0;
+}
+.nav-menu ul {
+    list-style: none;
+    padding: 0;
+}
+.nav-menu a {
+    color: var(--text-gen);
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+}
+.close-btn{
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    filter: var(--icons-filter);
+}
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.dash-buttons {
+    transition: background-color 0.4s; /* Smooth transition */
+    cursor: pointer;
+    background-color: var(--dash-btns); /* Primary button color */
+    font-family: 'DMSans';
+    color: var(--text-gen); /* Text color */
+    padding: 10px;
+    margin: 5px;
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    width: 90%; /* Full width */
+}
+.dash-buttons:hover {
+    background-color: var(--dash-btns-hover);
+}
+
+.profile-other-ico {
+    filter: var(--icons-filter);
+}
+.dashtext {
+    color: var(--text-gen);
+    position: relative;
+    left: 50%;
+    top: 0;
+}
+.content {
+    padding: 20px;
+}
+.loader-icon {
+    filter: var(--icons-filter);
+    height: 20px;
+    width: 20px;
+}
+
+/* Example media query for responsiveness */
+@media (max-width: 10000000px) {
+    .content {
+        padding: 10px;
+    }
+    .profile-img {
+        animation: profile-spin 1S linear;
+    }
+    .drop-img {
+        animation: icons-drop-spin 0.4s linear;
+    }
+    .theme-icon{
+        animation: icons-drop-spin 0.4s linear;
+    }
+    .loader-icon {
+        animation: spinner 1s linear infinite;
+    }
+
+}
+p {
+    color: var(--text-gen);
+}
+
+/* Form container */
+.login-body-container {
+    height: 100vh;
+    justify-content: center;
+    padding-top: 20%;
+}
+form {
+    background-color: var(--form-bg-color); /* White background for the form */
+    padding: 20px;
+    border-radius: 10px;
+    font-family: 'DMSans';
+    box-shadow: 0 10px 10px var(--shadow-color); /* Subtle shadow */
+    max-width: 300px; /* Fixed width for the form */
+    text-align: center; /* Center the text */
+}
+
+/* Headings */
+h2 {
+    color: var(--header-color); /* Dark color for the heading */
+    margin-bottom: 20px; /* Space below the heading */
+}
+.dashH2 {
+    color: var(--text-gen);
+    margin-top: 10px;
+}
+
+/* Input styling */
+input, textarea, select, input[type="email"], input[type="password"] {
+    width: 100%; /* Full width */
+    padding: 8px;
+    font-family: 'DMSans';
+    background-color: var(--input-bg);
+    color: var(--disabled-input-bg);
+    margin: 10px 0; /* Margin above and below inputs */
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 5px; /* Rounded corners */
+    box-sizing: border-box;/* Include padding and border in width */
+}
+
+
+/* Input focus state */
+input:focus {
+    border-color: var(--input-focus); /* Change border color on focus */
+    outline: none; /* Remove default outline */
+}
+
+/* Button styling */
+.form-button {
+    background-color: var(--formbutton-color); /* Primary button color */
+    font-family: 'DMSans';
+    color: white; /* Text color */
+    padding: 10px;
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    width: 99%; /* Full width */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+.form-dashboard-button {
+    background-color: var(--formbutton-color); /* Primary button color */
+    font-family: 'DMSans';
+    color: white; /* Text color */
+    padding: 10px;
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    width: max-content; /* Full width */
+    transition: background-color 0.3s; /* Smooth transition */
+    margin: 10px;
+}
+
+/* Button hover state */
+.form-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+.form-dashboard-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Error message styling */
+.form-error-text {
+    margin: 10px 0; /* Margin above and below error message */
+    color: rgb(255, 0, 0); /* Red color for errors */
+}
+.form-text {
+    color: var(--form-text-color);
+}
+.admin-content h1 {
+    text-align: center;
+    justify-content: center;
+    justify-items: center;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+.user-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.user-card {
+    width: 300px;
+    background-color: var(--user-card-bg);
+    box-shadow: 0 0 10px var(--shadow-color);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 0 10px 10px var(--shadow-color);
+}
+
+.user-card-form {
+    width: 95vw;
+    background-color: var(--user-card-bg);
+    box-shadow: 0 0 10px var(--shadow-color);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 0 10px 10px var(--shadow-color);
+}
+.user-card:hover {
+    transform: translateY(-5px);
+}
+.progress-bar {
+    padding-bottom: 10px;
+}
+
+.user-card-header {
+    background-color: var(--user-card-header-bg);
+    color: var(--user-card-header-color);
+    padding: 15px;
+    text-align: center;
+}
+
+.user-card-header h3 {
+    margin: 0;
+}
+
+.user-card-header p {
+    margin: 5px 0 0;
+    font-size: 0.9rem;
+}
+
+.user-card-body {
+    padding: 15px;
+    text-align: left;
+}
+
+.user-card-body p {
+    margin: 8px 0;
+}
+
+.user-card-body strong {
+    color: #007BFF;
+}
+.user-dash-container {
+    padding-top: 40px;
+    max-height: max-content;
+}
+.user-dash-container {
+    padding-top: 40px;
+    max-height: max-content;
+}
+.user-dashboard-cup {
+    padding-top: 40px;
+    max-height: max-content;
+}
+.success-message h3 {
+    color: var(--text-gen);
+}
+@keyframes icons-drop-spin {
+    from {
+        transform: rotate(300deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+@keyframes profile-spin {
+    from {
+      transform: rotateY(180deg);
+    }
+    to {
+      transform: rotateY(360deg);
+    }
+  }
+  @keyframes spinner {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+    
+  }
