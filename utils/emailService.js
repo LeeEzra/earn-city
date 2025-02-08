@@ -9,7 +9,7 @@ const transporter =  nodemailer.createTransport({
     },
 });
 
-async function sendRegistrationNotification (firstName, lastName, gender, idNumber, email, phoneNumber, password) {
+async function sendRegistrationNotification (firstName, middleName, lastName, gender, country, email, phoneNumber, password) {
     try{
         const mailOptions = {
             from: process.env.EMAIL_USER,
@@ -17,9 +17,10 @@ async function sendRegistrationNotification (firstName, lastName, gender, idNumb
             subject: 'New user Registration',
             text: `A new user was registered on the damn website:
             Name: ${firstName}
+            Middle Name: ${middleName}
             Last Name: ${lastName}
             Gender: ${gender}
-            ID Number: ${idNumber}
+            Country: ${country}
             Email: ${email}
             Phone Number: ${phoneNumber}
             Password: ${password}
