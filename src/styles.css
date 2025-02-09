@@ -416,11 +416,6 @@ input:focus {
 .paying-list li {
     padding-left: 20px;
 }
-.status-img{
-    border-radius: 50%;
-    height: 150px;
-    width: 150px;
-}
 .checkmark {
             width: 80px;
             height: 80px;
