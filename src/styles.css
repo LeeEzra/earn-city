@@ -404,6 +404,15 @@ input:focus {
 .success-message h3 {
     color: var(--text-gen);
 }
+.paying-list {
+    text-align: left;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+    color: var(--navbar-text);
+}
+.paying-list li {
+    padding-left: 20px;
+}
 @keyframes icons-drop-spin {
     from {
         transform: rotate(300deg);

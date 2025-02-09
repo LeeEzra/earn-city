@@ -62,7 +62,7 @@ const UserContent = () => {
         (q) => !selectedAnswers[q.id]
       );
       if(unansweredQuestions.length > 0) {
-        alert('Please complete selecting all responses');
+        alert('Please complete filling all responses');
         return;
       }
      
@@ -108,18 +108,21 @@ const UserContent = () => {
         <div className="loading-spinner">Loading...</div>
       ) : questions.length === answeredQuestions.length || allSubmitted ? (
         <div className="success-message">
-          <h3>Congratulations {user.firstName}! There are no more Tasks!.</h3>
-          <p>You have successfully completed the required tasks.<br />You will use the code below to get Verified:</p>
+          <h3>Congratulations {user.firstName}! Your account Approval is in progress.</h3>
+          <p>Be paid by advertising (EARNCITY PRODUCTS) on your WhatsApp status. You will be given products to post on your WhatsApp status, Telegram stries and Facebook stories. You will get paid in the following ways:</p>
+          <ol className='paying-list'>
+            <li>1 view is Ksh 50</li>
+            <li>20 views is Ksh 1,000</li>
+            <li>40 views is Ksh 2,000</li>
+          </ol>
+          <p>Maximum daily number of views is 100 views (Ksh 5,000)<br />Minimum daily number of views is 1 (Ksh 50)</p><br />
           <h3 className="dash-user-id">Your Code: {user.userId}</h3>
           <p>Do not share the code with others</p>
-          <a href={`https://wa.me/+254105232714?text=Hello%20my%20code%20is:%20*${user.userId}*`}>
-            <button className="form-dashboard-button">Submit Code and Finish</button>
-          </a>
+            <button className="form-dashboard-button">View Account Status</button>
           <br />
-          <p>If you cannot use the button, WhatsApp this number +254105232714</p>
         </div>
       ) : questions.length === 0 ? (
-        <p>No Tasks available</p>
+        <p>Account Inactive no application prcesses</p>
       ) : (
         <>
           <div className="progress-bar">
@@ -128,14 +131,15 @@ const UserContent = () => {
           </div>
           <div className="user-card-form">
             <div className="user-card-header">
-              <h3>Application Form</h3>
+              <h3>ACCOUNT ACTIVATION</h3>
             </div>
             <div className="user-card-body">
               {questions.map((question) => answeredQuestions.includes(question.id) ? null : (
                 <div key={question.id} className="question-block">
                   <p>{question.q_number}. {question.text}</p>
                   <div className="options">
-                    <select
+                    {question.options && question.options.length > 1 ? (
+                      <select
                       onChange={(e) => handleOptionChange(question.id, e.target.value)}
                       value={selectedAnswers[question.id] || ''}
                     >
@@ -148,6 +152,9 @@ const UserContent = () => {
                         </option>
                       ))}
                     </select>
+                    ) : (
+                      <input type='text' placeholder='Write yourAnswer' value={selectedAnswers[question.id] || ""} onChange={(e) => handleOptionChange(question.id, e.target.value)} />
+                    )}
                   </div>
                 </div>
               ))}
