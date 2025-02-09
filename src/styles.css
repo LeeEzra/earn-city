@@ -429,6 +429,8 @@ input:focus {
             justify-content: center;
             align-items: center;
             position: relative;
+            margin-left: 45%;
+            margin-right: 50%;
         }
 .checkmark::after {
             content: "";
