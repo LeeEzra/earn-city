@@ -396,13 +396,17 @@ input:focus {
     padding-top: 40px;
     max-height: max-content;
 }
-.user-dash-container {
-    padding-top: 40px;
-    max-height: max-content;
-}
 .user-dashboard-cup {
     padding-top: 40px;
     max-height: max-content;
+}
+.success-message {
+    text-align: center;
+    align-items: center;
+    background-color: rgba(220, 248, 243, 0.555);
+    height: fit-content;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px var(--shadow-color);
 }
 .success-message h3 {
     color: var(--text-gen);
@@ -425,10 +429,8 @@ input:focus {
             justify-content: center;
             align-items: center;
             position: relative;
-            margin-left: 50%;
         }
-
-        .checkmark::after {
+.checkmark::after {
             content: "";
             width: 30px;
             height: 20px;
@@ -440,7 +442,6 @@ input:focus {
             opacity: 0;
             animation: draw 0.2s ease-out forwards 0.1s;
         }
-
         @keyframes draw {
             0% {
                 width: 0;
