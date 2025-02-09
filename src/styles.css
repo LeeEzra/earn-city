@@ -426,6 +426,7 @@ input:focus {
     height: fit-content;
     width: fit-content;
     position: relative;
+    margin-left: 50%;
 }
 .checkmark {
             width: 80px;
@@ -435,6 +436,7 @@ input:focus {
             display: flex;
             justify-content: center;
             align-items: center;
+            position: relative;
         }
 .checkmark::after {
             content: "";
