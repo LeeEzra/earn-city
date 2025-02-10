@@ -110,10 +110,21 @@ function Dashboard() {
       </div>
       <div className={`nav-container ${isMenuOpen ? 'active' : ''}`}>
         <div className="close-btn" onClick={toggleMenu}>
-          <img src={menuCloseIcon} alt="Close" />
+          <img className="close-btn-img"  src={menuCloseIcon} alt="Close" />
         </div>
-        <div className="power-opt" onClick={handleLogout}>Logout
-          <img className="power-opt-icon" src={powerOpt} alt="Logout" />
+        <div className="nav-menu-button-container">
+        <div  className="nav-menu-button" onClick={handleLogout}>Logout
+          <img className="nav-menu-icon" src={powerOpt} alt="Logout" />
+        </div>
+        <div className="nav-menu-button" onClick={handleLogout}>Logout
+          <img className="nav-menu-icon" src={powerOpt} alt="Logout" />
+        </div>
+        <div className="nav-menu-button" onClick={handleLogout}>Logout
+          <img className="nav-menu-icon" src={powerOpt} alt="Logout" />
+        </div>
+        <div className="nav-menu-button" onClick={handleLogout}>Logout
+          <img className="nav-menu-icon" src={powerOpt} alt="Logout" />
+        </div>
         </div>
         <nav className="nav-menu"></nav>
       </div>
