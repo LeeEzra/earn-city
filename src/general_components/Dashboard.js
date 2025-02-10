@@ -4,11 +4,14 @@ import profileMale from '../images/profile/boy.png';
 import profileFemale from '../images/profile/woman.png';
 import ProfileOther from '../images/profile/other.png';
 import menuIcon from '../images/icons/menu.svg';
-import menuCloseIcon from '../images/icons/close_24dp.svg';
+import menuCloseIcon from '../images/icons/close.svg';
 import powerOpt from '../images/icons/power_settings.svg';
 import ThemeToggle from './ThemeToggle';
 import axios from 'axios';
 import UserContent from '../user_components/UserContent';
+import profileSetupIcon from '../images/icons/settings.svg';
+import aboutIcon from '../images/icons/info.svg';
+import homeIcon from '../images/icons/home.svg';
 import AdminContent from '../admin_components/AdminContent';
 
 function Dashboard() {
@@ -115,16 +118,16 @@ function Dashboard() {
         </div>
         <div className="nav-menu-button-container">
         <div  className="nav-menu-button" >Profile
-          <img className="nav-menu-icon" src={powerOpt} alt="Logout" />
+          <img className="nav-menu-icon" src={profileSetupIcon} alt="Logout" />
         </div>
         <div className="nav-menu-button" >Home
-          <img className="nav-menu-icon" src={powerOpt} alt="Logout" />
+          <img className="nav-menu-icon" src={homeIcon} alt="Logout" />
         </div>
         <div className="nav-menu-button" onClick={handleLogout}>Logout
           <img className="nav-menu-icon" src={powerOpt} alt="Logout" />
         </div>
         <div className="nav-menu-button">About us
-          <img className="nav-menu-icon" src={powerOpt} alt="Logout" />
+          <img className="nav-menu-icon" src={aboutIcon} alt="Logout" />
         </div>
         </div>
         <nav className="nav-menu"></nav>

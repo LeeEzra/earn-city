@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import darkMode from '../images/icons/dark.svg';
-import lightMode from '../images/icons/light_mode.svg';
+import darkMode from '../images/icons/dark_mode.svg';
+import lightMode from '../images/icons/light.svg';
 
 const ThemeToggle = () => {
     const[theme, setTheme] = useState(localStorage.getItem('theme') || 'light');

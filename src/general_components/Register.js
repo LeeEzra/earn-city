@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
-import loaderIcon from '../images/icons/settings.png';
+import loaderIcon from '../images/icons/settings.svg';
 
 function Register() {
   const [firstName, setFirstName] = useState('');

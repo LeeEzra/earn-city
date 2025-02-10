@@ -18,8 +18,8 @@
     --disabled-input-bg: #000000;
     --form-bg-color: #c7fffc;
     --input-focus: #007BFF;
-    --icons-filter: invert(100%);
-    --icons-filter-hover: invert(0%);
+    --icons-filter: contrast(200%);
+    --icons-filter-hover: contrast(300%);
     --nav-menu-bg: #ffe9f3;
     --user-card-bg: #fff;
     --user-card-header-bg: #007BFF;
@@ -47,7 +47,7 @@
     --disabled-input-bg: #ffffff;
     --form-input-border: rgb(20, 20, 20);
     --form-bg-color: #131922;
-    --icons-filter: invert(10%);
+    --icons-filter: invert(100%);
     --nav-menu-bg: #12171f;
     --user-card-bg: #1c1e1f67;
     --user-card-header-bg: #111f2e;
@@ -150,6 +150,15 @@ body {
     filter: var(--icons-filter);
     padding: 4px;
     cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+.nav-toggle-icon:hover {
+    filter: var(--icons-filter-hover);
+    transform: translateX(-2px);
+}
+.theme-icon:hover {
+    filter: var(--icons-filter-hover);
+    transform: translateY(-2px);
 }
 .nav-container {
     position: fixed;
@@ -183,9 +192,11 @@ body {
     cursor: pointer;
     position: relative;
     right: 2;
+    transition: transform 0.3s ease-in-out;
 }
-.close-btn img :hover {
+.close-btn img:hover {
     filter: var(--icons-filter-hover);
+    transform: translateX(-2px);
 }
 
 .dash-buttons {
@@ -241,13 +252,16 @@ body {
     transform: translateY(-5px);
     transition: background-color 0.6s;
 }
-.nav-menu-button .nav-menu-icon {
+.nav-menu-button img {
     height: 16px;
     width: 16px;
     filter: var(--icons-filter);
     padding-top: 2px;
     padding-right: 3px;
 
+}
+.nav-menu-button img:hover {
+    filter: var(--icons-filter-hover);
 }
 .content {
     padding: 20px;
