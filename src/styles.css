@@ -24,6 +24,7 @@
     --user-card-bg: #fff;
     --user-card-header-bg: #007BFF;
     --user-card-header-color: rgb(255, 255, 255);
+    --success-message-bg: rgba(255, 255, 255, 0.555);
 
 }
 [data-theme="dark"] {
@@ -49,6 +50,7 @@
     --user-card-bg: #1c1e1f67;
     --user-card-header-bg: #111f2e;
     --user-card-header-color: rgb(255, 255, 255);
+    --success-message-bg: rgba(1, 2, 75, 0.068);
 
 
 }
@@ -221,19 +223,20 @@ body {
 }
 .nav-menu-button {
     display: flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
     padding: 10px;
     cursor: pointer;
     width: 100%;
     justify-content: center;
+    text-align: left;
     margin-bottom: 40px;
 }
 .nav-menu-button .nav-menu-icon {
     height: 16px;
     width: 16px;
     filter: var(--icons-filter);
-    padding-top: 4px;
-    padding-left: 3px;
+    padding-top: 2px;
+    padding-right: 3px;
 
 }
 .content {
@@ -439,7 +442,7 @@ input:focus {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: rgba(255, 255, 255, 0.555);
+    background-color: var(--success-message-bg);
     height: fit-content;
     border-radius: 10px;
     box-shadow: 0 4px 6px var(--shadow-color);

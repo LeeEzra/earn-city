@@ -58,6 +58,7 @@ function Dashboard() {
       alert('Logout failed. Please try again later.');
     }
   };
+  
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
@@ -113,16 +114,16 @@ function Dashboard() {
           <img className="close-btn-img"  src={menuCloseIcon} alt="Close" />
         </div>
         <div className="nav-menu-button-container">
-        <div  className="nav-menu-button" onClick={handleLogout}>Logout
+        <div  className="nav-menu-button" onClick={handleLogout}>Profile
+          <img className="nav-menu-icon" src={powerOpt} alt="Logout" />
+        </div>
+        <div className="nav-menu-button" >Home
           <img className="nav-menu-icon" src={powerOpt} alt="Logout" />
         </div>
         <div className="nav-menu-button" onClick={handleLogout}>Logout
           <img className="nav-menu-icon" src={powerOpt} alt="Logout" />
         </div>
-        <div className="nav-menu-button" onClick={handleLogout}>Logout
-          <img className="nav-menu-icon" src={powerOpt} alt="Logout" />
-        </div>
-        <div className="nav-menu-button" onClick={handleLogout}>Logout
+        <div className="nav-menu-button">About us
           <img className="nav-menu-icon" src={powerOpt} alt="Logout" />
         </div>
         </div>
