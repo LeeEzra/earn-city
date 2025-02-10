@@ -112,7 +112,7 @@ function Dashboard() {
         <div className="close-btn" onClick={toggleMenu}>
           <img src={menuCloseIcon} alt="Close" />
         </div>
-        <div className="power-opt" onClick={handleLogout}>
+        <div className="power-opt" onClick={handleLogout}>Logout
           <img className="power-opt-icon" src={powerOpt} alt="Logout" />
         </div>
         <nav className="nav-menu"></nav>
