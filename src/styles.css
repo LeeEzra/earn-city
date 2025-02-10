@@ -25,6 +25,8 @@
     --user-card-header-bg: #007BFF;
     --user-card-header-color: rgb(255, 255, 255);
     --success-message-bg: rgba(255, 255, 255, 0.555);
+    --paying-list-container-bg: rgba(240, 236, 236, 0.5);
+    --nav-menu-buttons-hover-bg: rgb(186, 186, 240);
 
 }
 [data-theme="dark"] {
@@ -51,6 +53,8 @@
     --user-card-header-bg: #111f2e;
     --user-card-header-color: rgb(255, 255, 255);
     --success-message-bg: rgba(1, 2, 75, 0.068);
+    --paying-list-container-bg: rgba(24, 42, 59, 0.151);
+    --nav-menu-buttons-hover-bg: blue;
 
 
 }
@@ -230,6 +234,12 @@ body {
     justify-content: center;
     text-align: left;
     margin-bottom: 40px;
+    transition: transform 0.3s ease-in-out;
+}
+.nav-menu-button:hover {
+    background-color: var(--nav-menu-buttons-hover-bg);
+    transform: translateY(-5px);
+    transition: background-color 0.6s;
 }
 .nav-menu-button .nav-menu-icon {
     height: 16px;
@@ -351,6 +361,8 @@ input:focus {
 }
 .form-dashboard-button:hover {
     background-color: #0056b3; /* Darker blue on hover */
+    transform: translateY(+2px);
+    transition: transform 0.3s ease-in-out;
 }
 
 /* Error message styling */
@@ -447,17 +459,24 @@ input:focus {
     border-radius: 10px;
     box-shadow: 0 4px 6px var(--shadow-color);
 }
+.success-message p {
+    padding-left: 15px;
+}
 .success-message h3 {
     color: var(--text-gen);
 }
 .paying-list {
-    text-align: left;
     font-weight: bold;
     font-family: 'Times New Roman', Times, serif;
     color: var(--navbar-text);
 }
+.paying-list-container {
+    background-color: var(--paying-list-container-bg);
+    border-radius: 10px;
+    box-shadow: 0 2px 4px var(--shadow-color);
+}
 .paying-list li {
-    padding-left: 20px;
+    padding: 4px;
 }
 .success-icon {
     height: fit-content;
