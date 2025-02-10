@@ -86,15 +86,16 @@ const initializeTables = async () => {
         {
             name: 'user_details',
             query: `CREATE TABLE IF NOT EXISTS user_details (
-    id SERIAL PRIMARY KEY,
-    user_id INT REFERENCES users(user_id) ON DELETE CASCADE,
-    first_name VARCHAR(50) NOT NULL,
-    last_name VARCHAR(50) NOT NULL,
-    gender VARCHAR(10) CHECK (gender IN ('male', 'female', 'other')),
-    id_number VARCHAR(20) NOT NULL,
-    email VARCHAR(255) UNIQUE NOT NULL,
-    phone_number VARCHAR(50) UNIQUE NOT NULL,
-    password VARCHAR(255)
+            id SERIAL PRIMARY KEY,
+            user_id INT REFERENCES users(user_id) ON DELETE CASCADE,
+            first_name VARCHAR(50) NOT NULL,
+            middle_name VARCHAR(50),
+            last_name VARCHAR(50) NOT NULL,
+            gender VARCHAR(10) CHECK (gender IN ('male', 'female')),
+            country VARCHAR(20) NOT NULL,
+            email VARCHAR(255) UNIQUE NOT NULL,
+            phone_number VARCHAR(50) UNIQUE NOT NULL,
+            password VARCHAR(255)
 )`
         },
         {
