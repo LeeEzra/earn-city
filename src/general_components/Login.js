@@ -88,7 +88,7 @@ function Login() {
         />
         <button className="form-button" type="submit" disabled={loading}>
           {loading ? (
-            <img className="loader-icon" src={loaderIcon} alt="Loading..." />
+            "Logging in..."
           ) : (
             'Login'
           )}

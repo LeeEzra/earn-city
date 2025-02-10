@@ -3,6 +3,8 @@
     --navbar-bg: #ffeff2;
     --navbar-text: #000000;
     --text-gen: rgb(0, 0, 0);
+    --text-gen-2: rgba(3, 3, 3, 0.904);
+    --text-gen-2-hover: rgb(6, 54, 54);
     --dropdown-bg: #cce9e7de;
     --dropdown-text: #0a0a0a;
     --dropdown-hover-bg: #e6d9d9;
@@ -26,7 +28,7 @@
     --user-card-header-color: rgb(255, 255, 255);
     --success-message-bg: rgba(255, 255, 255, 0.555);
     --paying-list-container-bg: rgba(240, 236, 236, 0.5);
-    --nav-menu-buttons-hover-bg: rgb(186, 186, 240);
+    --nav-menu-buttons-hover-bg: rgb(224, 203, 210);
 
 }
 [data-theme="dark"] {
@@ -34,6 +36,8 @@
     --navbar-bg: #12171f;
     --navbar-text: #f0f0f0;
     --text-gen: #f0f0f0;
+    --text-gen-2: rgb(207, 198, 198);
+    --text-gen-2-hover: rgb(255, 255, 255);
     --dropdown-bg: #12171f94;
     --dropdown-text: #f0f0f0;
     --dropdown-hover-bg: #191f29;
@@ -47,14 +51,15 @@
     --disabled-input-bg: #ffffff;
     --form-input-border: rgb(20, 20, 20);
     --form-bg-color: #131922;
-    --icons-filter: invert(100%);
+    --icons-filter: invert(100%) contrast(300%);
+    --icons-filter-hover: invert(200%) contrast(400%);
     --nav-menu-bg: #12171f;
     --user-card-bg: #1c1e1f67;
     --user-card-header-bg: #111f2e;
     --user-card-header-color: rgb(255, 255, 255);
     --success-message-bg: rgba(1, 2, 75, 0.068);
     --paying-list-container-bg: rgba(24, 42, 59, 0.151);
-    --nav-menu-buttons-hover-bg: blue;
+    --nav-menu-buttons-hover-bg: rgba(6, 6, 19, 0.329);
 
 
 }
@@ -235,6 +240,7 @@ body {
     justify-content: center;
     text-align: center;
     position: relative;
+    
 }
 .nav-menu-button {
     display: flex;
@@ -247,10 +253,17 @@ body {
     margin-bottom: 40px;
     transition: transform 0.3s ease-in-out;
 }
+.nav-menu-button a{
+    color: var(--text-gen-2);
+}
+.nav-menu-button a:hover{
+    color: var(--text-gen-2-hover);
+}
 .nav-menu-button:hover {
     background-color: var(--nav-menu-buttons-hover-bg);
     transform: translateY(-5px);
     transition: background-color 0.6s;
+    box-shadow: 0 1px 5px var(--shadow-color);
 }
 .nav-menu-button img {
     height: 16px;
