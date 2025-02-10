@@ -117,17 +117,19 @@ function Dashboard() {
           <img className="close-btn-img"  src={menuCloseIcon} alt="Close" />
         </div>
         <div className="nav-menu-button-container">
-        <div  className="nav-menu-button" ><a>Profile</a>
-          <img className="nav-menu-icon" src={profileSetupIcon} alt="Logout" />
+          <div className="nav-menu-button" >
+          <img className="nav-menu-icon" src={homeIcon} alt="Logout" /><a>Home</a>
         </div>
-        <div className="nav-menu-button" ><a>Home</a>
-          <img className="nav-menu-icon" src={homeIcon} alt="Logout" />
+        <div  className="nav-menu-button" >
+          <img className="nav-menu-icon" src={profileSetupIcon} alt="Logout" /><a>Profile and Settings</a>
         </div>
-        <div className="nav-menu-button" onClick={handleLogout}><a>Logout</a>
-          <img className="nav-menu-icon" src={powerOpt} alt="Logout" />
+        
+        
+        <div className="nav-menu-button">
+          <img className="nav-menu-icon" src={aboutIcon} alt="Logout" /><a>About us</a>
         </div>
-        <div className="nav-menu-button"><a>About us</a>
-          <img className="nav-menu-icon" src={aboutIcon} alt="Logout" />
+        <div className="nav-menu-button" onClick={handleLogout}>
+          <img className="nav-menu-icon" src={powerOpt} alt="Logout" /><a>Logout</a>
         </div>
         </div>
         <nav className="nav-menu"></nav>

@@ -244,17 +244,20 @@ body {
 }
 .nav-menu-button {
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
     padding: 10px;
     cursor: pointer;
-    width: 100%;
-    justify-content: center;
     text-align: left;
+    align-items: flex-start;
+    justify-content: left;
+    justify-items: left;
+    width: 100%;
     margin-bottom: 40px;
     transition: transform 0.3s ease-in-out;
 }
 .nav-menu-button a{
     color: var(--text-gen-2);
+    text-align: left;
 }
 .nav-menu-button a:hover{
     color: var(--text-gen-2-hover);
@@ -263,14 +266,16 @@ body {
     background-color: var(--nav-menu-buttons-hover-bg);
     transform: translateY(-5px);
     transition: background-color 0.6s;
-    box-shadow: 0 1px 5px var(--shadow-color);
+    box-shadow: 0 1px 20px var(--shadow-color);
 }
 .nav-menu-button img {
     height: 16px;
     width: 16px;
     filter: var(--icons-filter);
-    padding-top: 2px;
-    padding-right: 3px;
+    padding-top: 3px;
+    padding-right: 5px;
+    position: relative;
+    left: 2px;
 
 }
 .nav-menu-button img:hover {
