@@ -19,6 +19,7 @@
     --form-bg-color: #c7fffc;
     --input-focus: #007BFF;
     --icons-filter: invert(100%);
+    --icons-filter-hover: invert(0%);
     --nav-menu-bg: #ffe9f3;
     --user-card-bg: #fff;
     --user-card-header-bg: #007BFF;
@@ -176,6 +177,9 @@ body {
     cursor: pointer;
     position: relative;
     right: 2;
+}
+.close-btn img :hover {
+    filter: var(--icons-filter-hover);
 }
 
 .dash-buttons {
