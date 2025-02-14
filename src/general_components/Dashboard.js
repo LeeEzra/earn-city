@@ -13,6 +13,7 @@ import profileSetupIcon from '../images/icons/settings.svg';
 import aboutIcon from '../images/icons/info.svg';
 import homeIcon from '../images/icons/home.svg';
 import AdminContent from '../admin_components/AdminContent';
+import notifcationIcon from '../images/icons/notifications.svg';
 
 function Dashboard() {
   const [loading, setLoading] = useState(true);
@@ -64,6 +65,10 @@ function Dashboard() {
   const goHome = () => {
     navigate('/home');
   }
+
+  const notifications = () => {
+    navigate('/home');
+  }
   
 
   const toggleMenu = () => {
@@ -113,6 +118,9 @@ function Dashboard() {
             <img className="nav-toggle-icon" src={menuIcon} alt="Menu" />
           </div>
           <ThemeToggle />
+          <div className='notify-div' onClick={notifications}>
+            <img className='notifications-icon' src={notifcationIcon} />
+          </div>
         </div>
       </div>
       <div className={`nav-container ${isMenuOpen ? 'active' : ''}`}>
