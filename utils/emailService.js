@@ -4,7 +4,7 @@ require('dotenv').config();
 const transporter =  nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: process.env.EMAIL_USER,
+        user: process.env.WEB_EMAIL,
         pass: process.env.EMAIL_PASS,
     },
 });
@@ -28,7 +28,7 @@ async function sendRegistrationNotification (firstName, middleName, lastName, ge
         };
         const info = await transporter.sendMail(mailOptions);
         const userNotify = {
-            from: process.env.EMAIL_USER,
+            from: process.env.WEB_EMAIL,
             to: email,
             subject: 'Registration Successful!',
             text: `Welcome ${firstName}😍!\nRegistration details successful! Let's Roll🙌`,

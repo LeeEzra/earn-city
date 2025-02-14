@@ -76,12 +76,12 @@ const initializeTables = async () => {
         {
             name: 'users',
             query: `CREATE TABLE IF NOT EXISTS users (
-    user_id SERIAL PRIMARY KEY,
-    password VARCHAR(255) NOT NULL,
-    role VARCHAR(10) CHECK (role IN ('user', 'admin')) NOT NULL,
-    email VARCHAR(100) UNIQUE NOT NULL,
-    created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
-)`
+            user_id SERIAL PRIMARY KEY,
+            password VARCHAR(255) NOT NULL,
+            role VARCHAR(10) CHECK (role IN ('user', 'admin')) NOT NULL,
+            email VARCHAR(100) UNIQUE NOT NULL,
+            created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
+            )`
         },
         {
             name: 'user_details',
@@ -96,29 +96,29 @@ const initializeTables = async () => {
             email VARCHAR(255) UNIQUE NOT NULL,
             phone_number VARCHAR(50) UNIQUE NOT NULL,
             password VARCHAR(255)
-)`
+            )`
         },
         {
             name: 'questions',
             query: `CREATE TABLE IF NOT EXISTS questions (
-    id INT PRIMARY KEY,
-    q_number INT,
-    text TEXT NOT NULL,
-    options TEXT[] NOT NULL
-)`
+            id INT PRIMARY KEY,
+            q_number INT,
+            text TEXT NOT NULL,
+            options TEXT[] NOT NULL
+            )`
         },
         {
             name: 'answers',
             query: `CREATE TABLE IF NOT EXISTS answers (
-    id SERIAL PRIMARY KEY,
-    question_id INT REFERENCES questions(id),
-    user_id INT REFERENCES users(user_id),
-    answer TEXT,
-    created_at TIMESTAMPTZ DEFAULT NOW()
-)`
+            id SERIAL PRIMARY KEY,
+            question_id INT REFERENCES questions(id),
+            user_id INT REFERENCES users(user_id),
+            answer TEXT,
+            created_at TIMESTAMPTZ DEFAULT NOW()
+            )`
         }
         // Add other tables if needed here
-    ];
+        ];
 
     for (const table of tables) {
         try {

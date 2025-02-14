@@ -11,7 +11,7 @@ dotenv.config();
 const secretKey = process.env.JWT_SECRET;
 //function to generate a token
 const generateToken = (userData) => {
-    return jwt.sign(userData, secretKey, {expiresIn: '2h'});
+    return jwt.sign(userData, secretKey, {expiresIn: '4h'});
 }
 
 //middleware to veryfy token
