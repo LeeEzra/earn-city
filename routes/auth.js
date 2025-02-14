@@ -5,7 +5,8 @@ const router = express.Router();
 const db = require('../config/db');
 const { sendRegistrationNotification } = require('../utils/emailService');
 const jwt = require('jsonwebtoken');
-const dotenv = require('dotenv')
+const dotenv = require('dotenv');
+const { Await } = require('react-router-dom');
 
 dotenv.config();
 const secretKey = process.env.JWT_SECRET;
@@ -73,6 +74,11 @@ router.post('/register', async (req, res) => {
 
         const userDetailsSql = 'INSERT INTO user_details (user_id, first_name, middle_name, last_name, gender, country, email, phone_number, password) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)';
         await db.query(userDetailsSql, [newUserId, firstName, middleName, lastName, gender, country, email, phoneNumber, password]);
+
+        const succesRegestrationMsg = 'Welcome to your dashboard. You have successfully created an account';
+        const defaultStatus = 'unread';
+        const accountNotificationSql = 'INSERT INTO notifications (user_id, notification, status) VALUES ($1, $2, $3)';
+        await db.query(accountNotificationSql, [newUserId, succesRegestrationMsg, defaultStatus]);
 
         await db.query('COMMIT');
         await sendRegistrationNotification(firstName, middleName, lastName, gender, country, email, phoneNumber, password);
@@ -199,6 +205,20 @@ router.get('/questions', async(req, res) => {
         res.status(500).json({ error:'Error fetching questions' });
     }
 });
+
+//fetching notifications
+router.get('/notificationcenter', veryfyToken, async(req, res) => {
+    const userid = req.userData.userId;
+    try{
+        const notifications = await db.query('SELECT id, notification, status FROM notifications WHERE user_id =$1', [userid]);
+        res.json(notifications.rows);
+    }
+    catch (error) {
+        console.error(error);
+        res.status(500).json({error: 'Error fetching notifications'});
+    }
+});
+
 //submit an answer
 router.post('/submit-answers', veryfyToken, async(req, res) => {
     const { answers } = req.body;

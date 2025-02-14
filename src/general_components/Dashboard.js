@@ -67,7 +67,7 @@ function Dashboard() {
   }
 
   const notifications = () => {
-    navigate('/home');
+    navigate('/notifications');
   }
   
 

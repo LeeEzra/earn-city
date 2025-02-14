@@ -6,6 +6,7 @@ import Home from './general_components/Home';
 import Dashboard from './general_components/Dashboard';
 import ProtectedRoute from './general_components/ProtectedRoute';
 import ProfileSetup from './general_components/Profile';
+import Notifications from './general_components/Notifications';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/dashboard" element= {<Dashboard />} />
             <Route path='/home' element={<Home />} />
+            <Route path='/notifications' element={<Notifications />} />
             <Route path="/" element={<Navigate to="/home" />} />
             <Route path="*" element={<Navigate to="/home" />} />
           </Routes>

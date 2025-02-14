@@ -116,6 +116,15 @@ const initializeTables = async () => {
             answer TEXT,
             created_at TIMESTAMPTZ DEFAULT NOW()
             )`
+        },
+        {
+            name: 'notifications',
+            query: `CREATE TABLE IF NOT EXISTS notifications (
+            id SERIAL PRIMARY KEY,
+            user_id INT REFERENCES users(user_id),
+            notification TEXT,
+            status VARCHAR(10) CHECK (status IN ('read', 'unread'))
+            )`
         }
         // Add other tables if needed here
         ];

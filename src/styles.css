@@ -146,12 +146,12 @@ body {
     position: fixed;
 }
 
-.theme-button, .nav-toggle{
+.theme-button, .nav-toggle, .dashboard-button{
     height: 40px;
     width: 40px;
     position: relative;
 }
-.theme-icon, .nav-toggle-icon, .notifications-icon {
+.theme-icon, .nav-toggle-icon, .notifications-icon, .dashboard-icon {
     filter: var(--icons-filter);
     padding: 4px;
     cursor: pointer;
@@ -166,6 +166,10 @@ body {
     transform: translateX(-4px);
 }
 .notifications-icon:hover {
+    filter: var(--icons-filter-hover);
+    transform: translateX(-4px);
+}
+.dashboard-button:hover {
     filter: var(--icons-filter-hover);
     transform: translateX(-4px);
 }
@@ -407,6 +411,10 @@ input:focus {
 .form-text {
     color: var(--form-text-color);
 }
+.admin-content {
+    margin-top: 40px;
+    position: relative;
+}
 .admin-content h1 {
     text-align: center;
     justify-content: center;
@@ -541,6 +549,32 @@ input:focus {
     transform: rotate(-45deg);
     opacity: 0;
     animation: draw 0.2s ease-out forwards 0.2s;
+}
+.notifications-body {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.notification-card  {
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+    background-color: var(--user-card-bg);
+    margin-bottom: 5px;
+    margin-left: 2px;
+    margin-right: 2px;
+    box-shadow: 0 10px 10px var(--shadow-color);
+    transition: transform 0.3s ease-in-out;
+    border-radius: 10px;
+}
+
+.notification-card:hover {
+    transform: translateY(-2px)
+}
+.notification-card p {
+    padding: 3px;
 }
 @keyframes draw {
     0% {

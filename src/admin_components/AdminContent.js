@@ -54,13 +54,12 @@ const AdminContent = () => {
     
 
     if (error) {
-        return <> { error && 
-        <div className="error">{error}</div> }</>
+        return <> { error && <div className="admin-content">
+        <div className="error">{error}</div> </div> }</>
     }
 
     return (
         <div className="admin-content">
-            <h1>Admin Dashboard</h1>
             {users.length === 0 ? (<h3>There are no users Found</h3>) : (
                 <div className="user-cards-container">
                 { users.map((user) => (
