@@ -104,7 +104,7 @@ const initializeTables = async () => {
             id INT PRIMARY KEY,
             q_number INT,
             text TEXT NOT NULL,
-            options TEXT[] NOT NULL
+            options TEXT[]
             )`
         },
         {

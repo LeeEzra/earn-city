@@ -61,6 +61,9 @@ function Dashboard() {
       alert('Logout failed. Please try again later.');
     }
   };
+  const goHome = () => {
+    navigate('/home');
+  }
   
 
   const toggleMenu = () => {
@@ -117,20 +120,18 @@ function Dashboard() {
           <img className="close-btn-img"  src={menuCloseIcon} alt="Close" />
         </div>
         <div className="nav-menu-button-container">
-          <div className="nav-menu-button" >
-          <img className="nav-menu-icon" src={homeIcon} alt="Logout" /><a>Home</a>
-        </div>
-        <div  className="nav-menu-button" >
-          <img className="nav-menu-icon" src={profileSetupIcon} alt="Logout" /><a>Profile and Settings</a>
-        </div>
-        
-        
-        <div className="nav-menu-button">
-          <img className="nav-menu-icon" src={aboutIcon} alt="Logout" /><a>About us</a>
-        </div>
-        <div className="nav-menu-button" onClick={handleLogout}>
-          <img className="nav-menu-icon" src={powerOpt} alt="Logout" /><a>Logout</a>
-        </div>
+          <div className="nav-menu-button" onClick={goHome}>
+            <img className="nav-menu-icon" src={homeIcon} alt="Home" /><a>Home</a>
+          </div>
+          <div  className="nav-menu-button" >
+            <img className="nav-menu-icon" src={profileSetupIcon} alt="Profile" /><a>Profile and Settings</a>
+          </div>
+          <div className="nav-menu-button">
+            <img className="nav-menu-icon" src={aboutIcon} alt="About" /><a>About us</a>
+          </div>
+          <div className="nav-menu-button" onClick={handleLogout}>
+            <img className="nav-menu-icon" src={powerOpt} alt="Logout" /><a>Logout</a>
+          </div>
         </div>
         <nav className="nav-menu"></nav>
       </div>
