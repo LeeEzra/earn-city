@@ -315,14 +315,13 @@ p {
     color: var(--text-gen);
 }
 
-/* Form container */
 .login-body-container {
     height: 100vh;
     justify-content: center;
     padding-top: 20%;
 }
 form {
-    background-color: var(--form-bg-color); /* White background for the form */
+    background-color: var(--form-bg-color);
     padding: 20px;
     border-radius: 10px;
     font-family: 'DMSans';
