@@ -244,7 +244,7 @@ router.post('/mark-as-read', veryfyToken, async(req, res) => {
 });
 
 //clearing notifcations
-router.delete('/clear-notifcations', veryfyToken, async(req, res) => {
+router.delete('/clear-notifications', veryfyToken, async(req, res) => {
     const userId = req.userData.userId;
     try {
         await db.query("BEGIN");

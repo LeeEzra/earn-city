@@ -103,24 +103,17 @@ const marksAsRead = async () => {
 const clearNotes = async () => {
   try {
     setLoading(true);
-    const response = axios.delete('/auth/clear-notifcations', {
+    await axios.delete('/auth/clear-notifications', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${localStorage.getItem('token')}`
       },
     });
-    if (!response.ok) {
-      const errorData = await response.json();
-      console.error('Error submitting answers:', errorData.message);
-      alert(`Error: ${errorData.message}`);
-      return;
-    }
     fetchNotifications();
   }
   catch (error) {
     console.error('Failed', error.message);
-    alert('Failed try again later');
   }
   finally {
     setLoading(false);
