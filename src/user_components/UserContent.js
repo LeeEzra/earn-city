@@ -44,7 +44,7 @@ const UserContent = () => {
         setAnsweredQuestions(answeredData);
       } catch (error) {
         console.error('Error fetching data:', error.message);
-        alert(error.message);
+        alert("Failed to fetch");
       } finally {
         setLoading(false);
       }
@@ -79,7 +79,7 @@ const UserContent = () => {
       if (!response.ok) {
         const errorData = await response.json();
         console.error('Error submitting answers:', errorData.message);
-        alert(`Error: ${errorData.message}`);
+        alert(`Error Answers not submitted try again later`);
         return;
       }
 

@@ -28,6 +28,7 @@ function Notifcations() {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (!response.ok) {
+        alert("Error fetching notifications");
         const errorData = await response.json();
         throw new Error(errorData.message || 'Failed to fetch notifications.');
       }
@@ -36,6 +37,7 @@ function Notifcations() {
     }
     catch (error){
       console.error('Error fetching notifications', error);
+      alert("Error fetching");
     }
     finally {
       setLoading(false);
@@ -73,14 +75,19 @@ function Notifcations() {
 const marksAsRead = async () => {
   try {
     setLoading(true);
-      await fetch('/auth/mark-as-read', {
+      const response = await fetch('/auth/mark-as-read', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
     });
-    alert('Marked as Read! You can delete the messages if you want');
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error('Error submitting answers:', errorData.message);
+      alert(`Error: ${errorData.message}`);
+      return;
+    }
     fetchNotifications();
 
   }
@@ -96,14 +103,19 @@ const marksAsRead = async () => {
 const clearNotes = async () => {
   try {
     setLoading(true);
-    const response = axios.delete('/auth//clear-notifcations', {
+    const response = axios.delete('/auth/clear-notifcations', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${localStorage.getItem('token')}`
       },
     });
-    alert("Cleared successfully");
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error('Error submitting answers:', errorData.message);
+      alert(`Error: ${errorData.message}`);
+      return;
+    }
     fetchNotifications();
   }
   catch (error) {
@@ -224,7 +236,7 @@ const clearNotes = async () => {
               ) : notifications.length === 0 ? (
                 null
               ) : (
-                  <button className='notification-card-delete-button' onClick={clearNotes}><a>Delete all</a></button>
+                  <button className='notification-card-delete-button' onClick={clearNotes}><a>Clear all</a></button>
               )
             }
             {
