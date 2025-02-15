@@ -61,6 +61,7 @@ function Notifcations() {
 
 const marksAsRead = async () => {
   try {
+    setLoading(true);
     const response = await fetch('/auth/mark-as-read', {
       method: 'POST',
       headers: {
@@ -80,6 +81,7 @@ const marksAsRead = async () => {
 }
 const clearNotes = async () => {
   try {
+    setLoading(true);
     const response = axios.delete('/auth//clear-notifcations', {
       method: 'POST',
       headers: {

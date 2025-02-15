@@ -81,7 +81,8 @@ router.post('/register', async (req, res) => {
         await db.query(accountNotificationSql, [newUserId, succesRegestrationMsg, defaultStatus]);
 
         const accStatus = 'pending';
-        const {emailLogs, notifyLogs} = 'false';
+        const emailLogs = 'false';
+        const notifyLogs = 'false';
         const profileSetupSql = 'INSERT INTO profile_settings (user_id, profile_status, email_logs, notify_logins) VALUES ($1, $2, $3, $4)';
         await db.query(profileSetupSql, [newUserId, accStatus, emailLogs, notifyLogs]);
 
