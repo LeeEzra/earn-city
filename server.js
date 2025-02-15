@@ -125,6 +125,16 @@ const initializeTables = async () => {
             notification TEXT,
             status VARCHAR(10) CHECK (status IN ('read', 'unread'))
             )`
+        },
+        {
+            name: 'profile_setiings',
+            query: `CREATE TABLE IF NOT EXISTS profile_settings (
+            prifile_id SERIAL PRIMARY KEY,
+            user_id INT REFERENCES users(user_id),
+            profile_status VARCHAR(10) CHECK (profile_status IN ('pending', 'inactive', 'active')),
+            email_logs VARCHAR(10) CHECK (email_logs IN('false', 'true')),
+            notify_logins VARCHAR(10) CHECK (notify_logs IN('false', 'true'))
+            )`
         }
         // Add other tables if needed here
         ];

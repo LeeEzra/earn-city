@@ -74,6 +74,9 @@ const marksAsRead = async () => {
     console.error('Failed:', error.message);
     alert('Failed try again later');
   }
+  finally {
+    setLoading(false);
+  }
 }
 const clearNotes = async () => {
   try {
@@ -90,19 +93,28 @@ const clearNotes = async () => {
     console.error('Failed', error.message);
     alert('Failed try again later');
   }
+  finally {
+    setLoading(false);
+  }
 }
   const handleLogout = async () => {
     if (!window.confirm('Are you sure you want to log out?')) return;
 
     try {
+      setLoading(true);
       await axios.post('/auth/logout', {}, { withCredentials: true });
       localStorage.removeItem('token');
       setIsAuthenticated(false);
       navigate('/login');
-    } catch (error) {
+    }
+    catch (error) {
       console.error('Logout failed:', error.message);
       alert('Logout failed. Please try again later.');
     }
+    finally {
+      setLoading(false);
+    }
+
   };
   const goToDashboard = () => {
     navigate('/dashboard');

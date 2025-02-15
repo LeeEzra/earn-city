@@ -65,6 +65,7 @@ function Dashboard() {
     if (!window.confirm('Are you sure you want to log out?')) return;
 
     try {
+      setLoading(true);
       await axios.post('/auth/logout', {}, { withCredentials: true });
       localStorage.removeItem('token');
       setIsAuthenticated(false);
@@ -72,6 +73,9 @@ function Dashboard() {
     } catch (error) {
       console.error('Logout failed:', error.message);
       alert('Logout failed. Please try again later.');
+    }
+    finally{
+      setLoading(false);
     }
   };
   const goHome = () => {
