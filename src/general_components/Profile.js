@@ -20,12 +20,12 @@ const Profile = () => {
     };
 
     const data = [
-        { name: "Jan", balance: 0 },
+        { name: "Jan", balance: 5 },
         { name: "Feb", balance: 0 },
-        { name: "Mar", balance: 0 },
-        { name: "Apr", balance: 0 },
+        { name: "Mar", balance: 3 },
+        { name: "Apr", balance: 2 },
         { name: "May", balance: 0 },
-        { name: "Jun", balance: 1 },
+        { name: "Jun", balance: 5 },
     ];
 
     return (<>
