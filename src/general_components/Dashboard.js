@@ -17,6 +17,7 @@ import notifcationIcon from '../images/icons/notifications.svg';
 
 function Dashboard() {
   const [loading, setLoading] = useState(true);
+  const [notificationi, setNotifications] = useState([]);
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -47,6 +48,17 @@ function Dashboard() {
     } finally {
       setLoading(false);
     }
+    const fetchNotifications = async () => {
+      const response = await fetch('/auth/notificationcenter', {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.message || 'Failed to fetch notifications.');
+        }
+        const data = await response.json();
+      setNotifications(data);
+  }; fetchNotifications();
   }, []);
 
   const handleLogout = async () => {
@@ -119,6 +131,11 @@ function Dashboard() {
           </div>
           <ThemeToggle />
           <div className='notify-div' onClick={notifications}>
+            {
+              notificationi.length === 0 ? null : (
+                <div className='small-red-notify-dot'></div>
+              )
+            }
             <img className='notifications-icon' src={notifcationIcon} />
           </div>
         </div>

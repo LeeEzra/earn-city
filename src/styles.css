@@ -29,6 +29,8 @@
     --success-message-bg: rgba(255, 255, 255, 0.555);
     --paying-list-container-bg: rgba(240, 236, 236, 0.5);
     --nav-menu-buttons-hover-bg: rgb(224, 203, 210);
+    --form-button-color-danger-bg: rgb(248, 82, 82);
+    --form-button-color-danger-bg-hover: rgb(247, 37, 37);
 
 }
 [data-theme="dark"] {
@@ -60,6 +62,8 @@
     --success-message-bg: rgba(1, 2, 75, 0.068);
     --paying-list-container-bg: rgba(24, 42, 59, 0.151);
     --nav-menu-buttons-hover-bg: rgba(6, 6, 19, 0.329);
+    --form-button-color-danger-bg: rgb(248, 82, 82);
+    --form-button-color-danger-bg-hover: rgb(247, 37, 37);
 
 
 }
@@ -167,7 +171,22 @@ body {
 }
 .notifications-icon:hover {
     filter: var(--icons-filter-hover);
-    transform: translateX(-4px);
+    transform: translateX(-2px);
+}
+.notify-div {
+    display: block;
+    display: flex;
+    height: fit-content;
+    flex-direction: row-reverse;
+}
+.small-red-notify-dot {
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    position: absolute;
+    background-color:rgb(255, 0, 0);
+    margin-right: 2px;
+    margin-top: 2px;
 }
 .dashboard-button:hover {
     filter: var(--icons-filter-hover);
@@ -551,30 +570,70 @@ input:focus {
     animation: draw 0.2s ease-out forwards 0.2s;
 }
 .notifications-body {
-    margin-top: 40px;
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
 }
 
 .notification-card  {
-    text-align: left;
+    text-align: center;
     display: flex;
     flex-direction: row;
     background-color: var(--user-card-bg);
     margin-bottom: 5px;
     margin-left: 2px;
     margin-right: 2px;
-    box-shadow: 0 10px 10px var(--shadow-color);
+    box-shadow: 0 1px 10px var(--shadow-color);
     transition: transform 0.3s ease-in-out;
     border-radius: 10px;
+    justify-items: center;
+    height: fit-content;
 }
 
 .notification-card:hover {
     transform: translateY(-2px)
 }
 .notification-card p {
-    padding: 3px;
+    padding: 4px;
+}
+.notificationa-card-mark-as-read-button {
+    background-color: #ffffff00;
+    border: none;
+    color: #007BFF;
+    height: max-content;
+    text-decoration-line: underline;
+    padding: 2px;
+    border-radius: 5px;
+    align-self: center;
+}
+.notificationa-card-mark-as-read-button:hover {
+    color: blue;
+    cursor: pointer;
+}
+
+.notification-card-delete-button {
+    background-color: #ffffff00;
+    border: none;
+    height: max-content;
+    align-self: center;
+    text-decoration: underline;
+    padding: 2px;
+    border-radius: 5px;
+    color: rgb(243, 80, 80);
+}
+.notification-card-delete-button:hover {
+    color: red;
+    cursor: pointer;
+}
+.unread-notif-dot {
+    background-color: green;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    margin-top: 2px;
+    margin-left: 2px;
+    position: absolute;
 }
 @keyframes draw {
     0% {

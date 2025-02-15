@@ -45,6 +45,7 @@ function Notifcations() {
     } finally {
       setLoading(false);
     }
+    
     const fetchNotifications = async () => {
         const response = await fetch('/auth/notificationcenter', {
             headers: { Authorization: `Bearer ${token}` },
@@ -58,6 +59,38 @@ function Notifcations() {
     }; fetchNotifications();
   }, []);
 
+const marksAsRead = async () => {
+  try {
+    const response = await fetch('/auth/mark-as-read', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    });
+    alert('Marked as Read! You can delete the messages if you want');
+  }
+  catch (error) {
+    console.error('Failed:', error.message);
+    alert('Failed try again later');
+  }
+}
+const clearNotes = async () => {
+  try {
+    const response = axios.delete('/auth//clear-notifcations', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      },
+    });
+    alert("Cleared successfully");
+  }
+  catch (error) {
+    console.error('Failed', error.message);
+    alert('Failed try again later');
+  }
+}
   const handleLogout = async () => {
     if (!window.confirm('Are you sure you want to log out?')) return;
 
@@ -91,6 +124,8 @@ function Notifcations() {
   if (!isAuthenticated) {
     return <Navigate to="/login" />;
   }
+  const countUnread = notifications.filter(fruit => fruit.status === 'unread').length;
+  const countRead = notifications.filter(fruiti => fruiti.status === 'read').length;
 
   return (
     <>
@@ -156,17 +191,28 @@ function Notifcations() {
         <div className='notifications-body'>
             <h2>Notifications</h2>
             {
+               countUnread >= 1 ? (
+                <button className='notificationa-card-mark-as-read-button' onClick={marksAsRead} ><a>Mark all as Read</a></button>
+              ) : notifications.length === 0 ? (
+                null
+              ) : (
+                  <button className='notification-card-delete-button' onClick={clearNotes}><a>Delete all</a></button>
+              )
+            }
+            {
                 notifications.length === 0 ? (
-                    <p>You Do not have any unread notifications</p>
+                    <p>You Do not have any unread notifications. Notifications will appear here</p>
+                  
                 ) : (
+
                     notifications.map((notif) => (
                         <div key={notif.id} className='notification-card'>
+                          {
+                            notif.status === 'unread' ? (
+                              <div className='unread-notif-dot'></div>
+                            ) : null
+                          }
                             <p>{notif.notification}</p> {
-                                notif.status === 'unread' ? (
-                                    <button className='notificationa-card-mark-as-read-button'>Mark as read</button>
-                                ) : (
-                                    <button className='notification-card-delete-button'>Delete</button>
-                                )
                             }
                         </div>
                     ))

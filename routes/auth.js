@@ -219,6 +219,41 @@ router.get('/notificationcenter', veryfyToken, async(req, res) => {
     }
 });
 
+//marking notfications as read
+router.post('/mark-as-read', veryfyToken, async(req, res) => {
+    const userId = req.userData.userId;
+
+    try {
+        await db.query("BEGIN");
+        const readSql = `UPDATE notifications SET status = 'read' WHERE user_id = $1`;
+        await db.query(readSql, [userId]);
+        await db.query("COMMIT");
+        res.status(200).send('Marked as read');
+    }
+    catch {
+        await db.query('ROLLBACK');
+        console.error('Failed you cannot mark as read');
+        res.status(500).send('Failed');
+    }
+});
+
+//clearing notifcations
+router.delete('/clear-notifcations', veryfyToken, async(req, res) => {
+    const userId = req.userData.userId;
+    try {
+        await db.query("BEGIN");
+        const clearTable = `DELETE FROM notifications WHERE user_id = $1`;
+        await db.query(clearTable, [userId]);
+        await db.query('COMMIT');
+        res.status(200).send("Cleared");
+    }
+    catch {
+        await db.query('ROLLBACK');
+        console.error('Failed to delete');
+        res.status(500).send('Failed to clear')
+    }
+})
+
 //submit an answer
 router.post('/submit-answers', veryfyToken, async(req, res) => {
     const { answers } = req.body;
