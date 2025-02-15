@@ -21,7 +21,10 @@ function Notifcations() {
   const navigate = useNavigate();
 
   const fetchNotifications = async () => {
-    const response = await fetch('/auth/notificationcenter', {
+    setLoading(true);
+    const token = localStorage.getItem('token');
+    try {
+      const response = await fetch('/auth/notificationcenter', {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (!response.ok) {
@@ -29,11 +32,19 @@ function Notifcations() {
         throw new Error(errorData.message || 'Failed to fetch notifications.');
       }
       const data = await response.json();
-    setNotifications(data);
+      setNotifications(data);
+    }
+    catch (error){
+      console.error('Error fetching notifications', error);
+    }
+    finally {
+      setLoading(false);
+    }
 };
 
   useEffect(() => {
     const token = localStorage.getItem('token');
+    fetchNotifications();
 
     if (!token) {
       setIsAuthenticated(false);
@@ -57,7 +68,6 @@ function Notifcations() {
     } finally {
       setLoading(false);
     }
-    fetchNotifications();
   }, []);
 
 const marksAsRead = async () => {
@@ -71,17 +81,15 @@ const marksAsRead = async () => {
       },
     });
     alert('Marked as Read! You can delete the messages if you want');
-    fetchNotifications
+    fetchNotifications();
 
   }
   catch (error) {
     console.error('Failed:', error.message);
     alert('Failed try again later');
-    fetchNotifications();
   }
   finally {
     setLoading(false);
-    fetchNotifications();
     
   }
 }
@@ -104,7 +112,6 @@ const clearNotes = async () => {
   }
   finally {
     setLoading(false);
-    fetchNotifications();
   }
 }
   const handleLogout = async () => {
@@ -135,19 +142,13 @@ const clearNotes = async () => {
     setIsMenuOpen((prev) => !prev);
   };
 
-  if (loading) {
-    return <>
-    <div className='notifications-body'>
-        <div>Loading...</div>
-    </div>
-     </>;
-  }
-
   if (!isAuthenticated) {
     return <Navigate to="/login" />;
   }
   const countUnread = notifications.filter(fruit => fruit.status === 'unread').length;
-  const countRead = notifications.filter(fruiti => fruiti.status === 'read').length;
+  const Refresh = async () => {
+    fetchNotifications();
+  }
 
   return (
     <>
@@ -213,6 +214,11 @@ const clearNotes = async () => {
         <div className='notifications-body'>
             <h2>Notifications</h2>
             {
+              loading ? (
+                <div>Loading...</div>
+              ) : (null)
+            }
+            {
                countUnread >= 1 ? (
                 <button className='notificationa-card-mark-as-read-button' onClick={marksAsRead} ><a>Mark all as Read</a></button>
               ) : notifications.length === 0 ? (
@@ -222,9 +228,10 @@ const clearNotes = async () => {
               )
             }
             {
-                notifications.length === 0 ? (
-                    <p>You Do not have any unread notifications. Notifications will appear here</p>
-                  
+                notifications.length === 0 ? ( <>
+                <p>You Do not have any unread notifications. Notifications will appear here</p>
+                    <button onClick={Refresh}>Refresh</button>
+                    </>
                 ) : (
 
                     notifications.map((notif) => (
