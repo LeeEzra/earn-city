@@ -20,6 +20,18 @@ function Notifcations() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
 
+  const fetchNotifications = async () => {
+    const response = await fetch('/auth/notificationcenter', {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Failed to fetch notifications.');
+      }
+      const data = await response.json();
+    setNotifications(data);
+};
+
   useEffect(() => {
     const token = localStorage.getItem('token');
 
@@ -45,24 +57,13 @@ function Notifcations() {
     } finally {
       setLoading(false);
     }
-    
-    const fetchNotifications = async () => {
-        const response = await fetch('/auth/notificationcenter', {
-            headers: { Authorization: `Bearer ${token}` },
-          });
-          if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.message || 'Failed to fetch notifications.');
-          }
-          const data = await response.json();
-        setNotifications(data);
-    }; fetchNotifications();
+    fetchNotifications();
   }, []);
 
 const marksAsRead = async () => {
   try {
     setLoading(true);
-    const response = await fetch('/auth/mark-as-read', {
+      await fetch('/auth/mark-as-read', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -70,13 +71,18 @@ const marksAsRead = async () => {
       },
     });
     alert('Marked as Read! You can delete the messages if you want');
+    fetchNotifications
+
   }
   catch (error) {
     console.error('Failed:', error.message);
     alert('Failed try again later');
+    fetchNotifications();
   }
   finally {
     setLoading(false);
+    fetchNotifications();
+    
   }
 }
 const clearNotes = async () => {
@@ -90,6 +96,7 @@ const clearNotes = async () => {
       },
     });
     alert("Cleared successfully");
+    fetchNotifications();
   }
   catch (error) {
     console.error('Failed', error.message);
@@ -97,6 +104,7 @@ const clearNotes = async () => {
   }
   finally {
     setLoading(false);
+    fetchNotifications();
   }
 }
   const handleLogout = async () => {
