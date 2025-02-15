@@ -4,17 +4,22 @@ import axios from "axios";
 
 const AdminContent = () => {
     const [users, setUsers] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
         const getUsers = async () => {
             try {
+                setLoading(true);
                 const data = await fetchUserDetails();
                 const nonAdminUsers = data.filter((user) => user.role !== 'admin');
                 setUsers(nonAdminUsers);
             }
             catch (err) {
                 setError('Failed to fetch user details try again.')
+            }
+            finally {
+                setLoading(false)
             }
         };
 
@@ -26,6 +31,7 @@ const AdminContent = () => {
         if (!confirmDelete) return;
 
         try {
+            setLoading(true);
             await axios.delete(`/auth/users/${user_id}`);
             alert('User deleted successfully');
 
@@ -35,11 +41,15 @@ const AdminContent = () => {
             console.error('error deleting user ', err);
             alert('Failed to delete the user. Please try again')
         }
+        finally {
+            setLoading(false);
+        }
     };
     const deleteUserAnswers = async (user_id) => {
         const confirmDelete = window.confirm('Are you sure want to delete all answers for this user?');
         if(!confirmDelete) return;
         try {
+            setLoading(true);
             await axios.delete(`/auth/users/${user_id}/answers`);
             alert('User answers deleted successfully');
             setUsers((prevUsers) => prevUsers.map((user) => user.user_id === user_id? {...user, answer_count: 0} : user ));
@@ -49,6 +59,9 @@ const AdminContent = () => {
             console.error('Error deleting user answers:', err);
             alert('Failed to delete user answers. Please try again')
         }
+        finally {
+            setLoading(false);
+        }
     }
 
     
@@ -56,6 +69,13 @@ const AdminContent = () => {
     if (error) {
         return <> { error && <div className="admin-content">
         <div className="error">{error}</div> </div> }</>
+    }
+    if(loading) {
+        return (
+            <div className="admin-content">
+                <div>Loading...</div>
+            </div>
+        )
     }
 
     return (

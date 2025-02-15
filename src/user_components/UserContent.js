@@ -66,7 +66,7 @@ const UserContent = () => {
         return;
       }
      
-
+      setLoading(true);
       const response = await fetch('/auth/submit-answers', {
         method: 'POST',
         headers: {
@@ -89,6 +89,9 @@ const UserContent = () => {
     } catch (error) {
       console.error('Error submitting answers:', error);
       alert('An unexpected error occurred. Please try again later.');
+    }
+    finally{
+      setLoading(false);
     }
   };
 
