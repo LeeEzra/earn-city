@@ -81,6 +81,9 @@ function Dashboard() {
   const goHome = () => {
     navigate('/home');
   }
+  const goToprofile = () => {
+    navigate('/profile')
+  }
 
   const notifications = () => {
     navigate('/notifications');
@@ -123,7 +126,7 @@ function Dashboard() {
                 }
               />
             </div>
-            <div className="profile-info">
+            <div className="profile-info-old">
               <div className="profile-names">{user.firstName}</div>
               <div className="profile-adm">{user.role}</div>
             </div>
@@ -152,7 +155,7 @@ function Dashboard() {
           <div className="nav-menu-button" onClick={goHome}>
             <img className="nav-menu-icon" src={homeIcon} alt="Home" /><a>Home</a>
           </div>
-          <div  className="nav-menu-button" >
+          <div  className="nav-menu-button" onClick={goToprofile}>
             <img className="nav-menu-icon" src={profileSetupIcon} alt="Profile" /><a>Profile and Settings</a>
           </div>
           <div className="nav-menu-button">

@@ -34,14 +34,14 @@ const Sidebar = () => {
     return (
         <>
             {/* Button to open sidebar */}
-            <button className="menu-button" onClick={toggleMenu}>☰ Menu</button>
+            <button className="menu-button2" onClick={toggleMenu}>☰ Menu</button>
 
             {/* Backdrop (clicking it closes the sidebar) */}
             {isOpen && <div className="backdrop" onClick={() => setIsOpen(false)}></div>}
 
             {/* Sidebar */}
             <div ref={sidebarRef} className={`sidebar ${isOpen ? "open" : ""}`}>
-                <button className="close-btn" onClick={toggleMenu}>✖</button>
+                <button className="close-btn2" onClick={toggleMenu}>✖</button>
                 <ul>
                     <li><a href="#">Home</a></li>
                     <li><a href="#">About</a></li>
