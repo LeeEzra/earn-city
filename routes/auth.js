@@ -6,7 +6,6 @@ const db = require('../config/db');
 const { sendRegistrationNotification } = require('../utils/emailService');
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
-const { Await } = require('react-router-dom');
 
 dotenv.config();
 const secretKey = process.env.JWT_SECRET;
