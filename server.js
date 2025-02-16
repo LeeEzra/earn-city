@@ -146,6 +146,17 @@ const initializeTables = async () => {
             wallet_balance INT,
             history TIMESTAMPTZ DEFAULT NOW()
             )`
+        },
+        {
+            name: 'wallet_transcactions',
+            query: `CREATE TABLE IF NOT EXISTS wallet_transactions (
+            t_id SERIAL PRIMARY KEY,
+            user_id INT REFERENCES users(user_id),
+            t_status VARCHAR(10) CHECK (t_status IN ('confirmed', 'pending', 'declined')),
+            t_type VARCHAR(20) CHECK (t_type IN ('credited(received)', 'debited(sent)')),
+            t_desc TEXT,
+            t_created_at TIMESTAMPTZ DEFAULT NOW()
+            )`
         }
         // Add other tables if needed here
         ];
