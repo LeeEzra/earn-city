@@ -13,7 +13,6 @@ function Notifcations() {
   const [notifications, setNotifications] = useState([]);
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(true);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
 
 const fetchNotifications = async () => {

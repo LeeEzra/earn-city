@@ -129,7 +129,7 @@ const initializeTables = async () => {
         {
             name: 'profile_setiings',
             query: `CREATE TABLE IF NOT EXISTS profile_settings (
-            prifile_id SERIAL PRIMARY KEY,
+            profile_id SERIAL PRIMARY KEY,
             user_id INT REFERENCES users(user_id),
             profile_status VARCHAR(10) CHECK (profile_status IN ('pending', 'inactive', 'active')),
             email_logs VARCHAR(10) CHECK (email_logs IN('false', 'true')),
@@ -155,7 +155,8 @@ const initializeTables = async () => {
             t_status VARCHAR(10) CHECK (t_status IN ('confirmed', 'pending', 'declined')),
             t_type VARCHAR(20) CHECK (t_type IN ('credited(received)', 'debited(sent)')),
             t_desc TEXT,
-            t_created_at TIMESTAMPTZ DEFAULT NOW()
+            t_created_at TIMESTAMPTZ DEFAULT NOW(),
+            t_amount INT
             )`
         }
         // Add other tables if needed here

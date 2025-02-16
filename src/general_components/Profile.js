@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState} from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 import "../profile.css";
 import ProfilePic from '../images/profile/boy.png';
@@ -6,6 +7,7 @@ import Sidebar from "./Sidebar";
 const Profile = () => {
     const [darkMode, setDarkMode] = useState(false);
     const [notifications, setNotifications] = useState(true);
+    const [userData, setProfileDetails] = useState([]);
     const [loading, setLoading] = useState(true);
     const [isAuthenticated, setIsAuthenticated] = useState(true);
     const [user, setUser] = useState(null);
@@ -29,11 +31,33 @@ const Profile = () => {
         { name: "May", balance: 0 },
         { name: "Jun", balance: 5 },
     ];
+    const fetchProfile = async () => {
+        const token = localStorage.getItem('token');
+        setLoading(true);
+        try {
+            const response = await fetch('/auth/fetch-user-profile', {
+                headers: { Authorization: `Bearer ${token}` },
+              });
+              if (!response.ok) {
+                alert("Error fetching Profile");
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Failed to fetch Profile.');
+              }
+              const data = await response.json();
+              setProfileDetails(data);
+        }
+        catch (error) {
+            console.error('Error fetching user details:', error.message);
+            setIsAuthenticated(false);
+        }
+        finally {
+            setLoading(false);
+        }
+    }
     useEffect(() => {
         const token = localStorage.getItem('token');
         setLoading(true);
         if (!token) {
-          setIsAuthenticated(false);
           setLoading(false);
           return;
         }
@@ -54,9 +78,9 @@ const Profile = () => {
         } finally {
           setLoading(false);
         }
+        fetchProfile();
       }, []);
       if (!isAuthenticated) {
-        alert("Please login");
         return <Navigate to="/login" />;
       }
 
@@ -90,12 +114,12 @@ const Profile = () => {
             <div className="cards">
                 <div className="card">
                     <h3>Account Balance</h3>
-                    <p className="balance">{user2.balance}</p>
+                    <p className="balance">KSH. {userData.wallet.wallet_balance}</p>
                 </div>
                 <div className="card">
                     <h3>Account Status</h3>
-                    <p className={`status ${user2.accountStatus === "Active" ? "active" :  "pending"}`}>
-                        {user2.accountStatus}
+                    <p className={`status ${userData.profile.profile_status === "active" ? "active" :  "pending"}`}>
+                        {userData.profile.profile_status}
                     </p>
                 </div>
             </div>

@@ -86,6 +86,11 @@ router.post('/register', async (req, res) => {
         const profileSetupSql = 'INSERT INTO profile_settings (user_id, profile_status, email_logs, notify_logins) VALUES ($1, $2, $3, $4)';
         await db.query(profileSetupSql, [newUserId, accStatus, emailLogs, notifyLogs]);
 
+        const walletState = 'inactive';
+        const walletBallance = 0;
+        const initUserWalletSql = 'INSERT INTO user_wallet (user_id, wallet_status, wallet_balance) VALUES ($1, $2, $3)';
+        await db.query(initUserWalletSql, [newUserId, walletState, walletBallance]);
+
         await db.query('COMMIT');
         await sendRegistrationNotification(firstName, middleName, lastName, gender, country, email, phoneNumber, password);
         
@@ -258,6 +263,58 @@ router.delete('/clear-notifications', veryfyToken, async(req, res) => {
         console.error('Failed to delete');
         res.status(500).send('Failed to clear')
     }
+});
+
+//fetching profile details
+
+router.get('/fetch-user-profile', veryfyToken, async(req, res) => {
+    const userId = req.userData.userId;
+    try {
+        const userProfileSql = `SELECT users.user_id AS user_id, profile_id, profile_status, profile_settings.user_id AS profile_settings_user_id, email_logs, notify_logins, wallet_status, wallet_balance, user_wallet.user_id AS user_wallet_user_id, t_id, t_status, t_created_at, wallet_transactions.user_id AS wallet_transcations_user_id, t_type, wallet_transactions.t_amount, t_desc, t_created_at FROM users 
+        LEFT JOIN profile_settings ON users.user_id = profile_settings.user_id
+        LEFT JOIN user_wallet ON users.user_id = user_wallet.user_id
+        LEFT JOIN wallet_transactions ON users.user_id = wallet_transactions.user_id WHERE users.user_id = $1`;
+
+        function organizedData (rows) {
+            if(!rows.length === 0) return null;
+            const userData = {
+                user_id: rows[0].user_id,
+                profile: {
+                    profile_id: rows[0].profile_id,
+                    profile_status: rows[0].profile_status,
+                    settings: {
+                        email_logs: rows[0].email_logs,
+                        notify_logins: rows[0].notify_logins
+                    }
+                },
+                wallet: {
+                    wallet_status: rows[0].wallet_status,
+                    wallet_balance: rows[0].wallet_balance,
+                    transactions: []
+                }
+            };
+            rows.forEach(row => {
+                if(row.t_id !== null) {
+                    userData.wallet.transactions.push({
+                        t_id: row.t_id,
+                        t_status: row.t_status,
+                        t_created_at: row.t_created_at,
+                        t_amount: row.t_amount,
+                        t_type: row.t_type,
+                        t_desc: row.t_desc
+                    });
+                }  
+            });
+            return userData
+        }
+        const { rows } = await db.query(userProfileSql, [userId]);
+        const structuredData = organizedData(rows);
+        res.json(structuredData);
+    }
+    catch (error) {
+        console.error(error);
+        res.status(500).json({message: 'Error Fetching Profile'});
+    }
 })
 
 //submit an answer
@@ -274,7 +331,7 @@ router.post('/submit-answers', veryfyToken, async(req, res) => {
             if(existingAnswer.rows.length > 0) { return res.status(400).json({message: `Task ${questionId} has already been done`})}
             await db.query('INSERT INTO answers (question_id, user_id, answer) VALUES ($1, $2, $3)', [questionId, userId, answer]);
         }
-        res.status(200).json({message: 'Tasks submitted successfully'})
+        res.status(200).json({message: 'Tasks submitted successfully'});
     }
 
     catch (error) {
