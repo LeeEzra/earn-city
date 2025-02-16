@@ -3,14 +3,10 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import profileMale from '../images/profile/boy.png';
 import profileFemale from '../images/profile/woman.png';
 import ProfileOther from '../images/profile/other.png';
-import menuIcon from '../images/icons/menu.svg';
-import menuCloseIcon from '../images/icons/close.svg';
-import powerOpt from '../images/icons/power_settings.svg';
 import ThemeToggle from './ThemeToggle';
 import axios from 'axios';
-import profileSetupIcon from '../images/icons/settings.svg';
-import aboutIcon from '../images/icons/info.svg';
 import dashBoardIcon from '../images/icons/dashboard.svg';
+import Sidebar from './Sidebar';
 
 function Notifcations() {
   const [loading, setLoading] = useState(true);
@@ -20,7 +16,7 @@ function Notifcations() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
 
-  const fetchNotifications = async () => {
+const fetchNotifications = async () => {
     setLoading(true);
     const token = localStorage.getItem('token');
     try {
@@ -179,41 +175,19 @@ const clearNotes = async () => {
                 }
               />
             </div>
-            <div className="profile-info">
+            <div className="profile-info-old">
               <div className="profile-names">{user.firstName}</div>
               <div className="profile-adm">{user.role}</div>
             </div>
           </div>
         )}
         <div className="controls-btns">
-          <div className="nav-toggle" onClick={toggleMenu}>
-            <img className="nav-toggle-icon" src={menuIcon} alt="Menu" />
-          </div>
+          <Sidebar />
           <ThemeToggle />
           <div className='dashboard-button' onClick={goToDashboard}>
             <img className='dashboard-icon' src={dashBoardIcon} />
           </div>
         </div>
-      </div>
-      <div className={`nav-container ${isMenuOpen ? 'active' : ''}`}>
-        <div className="close-btn" onClick={toggleMenu}>
-          <img className="close-btn-img"  src={menuCloseIcon} alt="Close" />
-        </div>
-        <div className="nav-menu-button-container">
-          <div className="nav-menu-button" onClick={goToDashboard}>
-            <img className="nav-menu-icon" src={dashBoardIcon} alt="Dashboard" /><a>Dashboard</a>
-          </div>
-          <div  className="nav-menu-button" >
-            <img className="nav-menu-icon" src={profileSetupIcon} alt="Profile" /><a>Profile and Settings</a>
-          </div>
-          <div className="nav-menu-button">
-            <img className="nav-menu-icon" src={aboutIcon} alt="About" /><a>About us</a>
-          </div>
-          <div className="nav-menu-button" onClick={handleLogout}>
-            <img className="nav-menu-icon" src={powerOpt} alt="Logout" /><a>Logout</a>
-          </div>
-        </div>
-        <nav className="nav-menu"></nav>
       </div>
       <main>
         <div className='notifications-body'>

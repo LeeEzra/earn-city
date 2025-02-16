@@ -150,9 +150,9 @@ body {
     position: fixed;
 }
 
-.theme-button, .nav-toggle, .dashboard-button{
-    height: 40px;
-    width: 40px;
+.theme-button, .menu-open-btn, .dashboard-button{
+    height: 60px;
+    width: 60px;
     position: relative;
 }
 .theme-icon, .nav-toggle-icon, .notifications-icon, .dashboard-icon {
@@ -160,6 +160,7 @@ body {
     padding: 4px;
     cursor: pointer;
     transition: transform 0.3s ease-in-out;
+    height: 30px;
 }
 .nav-toggle-icon:hover {
     filter: var(--icons-filter-hover);
@@ -191,44 +192,6 @@ body {
 .dashboard-button:hover {
     filter: var(--icons-filter-hover);
     transform: translateX(-4px);
-}
-.nav-container {
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    right: -250px;
-    top: 0;
-    width: 200px;
-    height: 100%;
-    background-color: var(--nav-menu-bg);
-    transition: right 0.3s;
-    box-shadow: 0 0 10px var(--shadow-color);
-    z-index: 100;
-}
-.nav-container.active {
-    right: 0;
-}
-.close-btn {
-    border: none;
-    height: 40px;
-    width: 96%;
-    padding: 4px;
-    height: fit-content;
-    align-items: end;
-    align-content: right;
-    text-align: right;
-}
-.close-btn img {
-    filter: var(--icons-filter);
-    cursor: pointer;
-    position: relative;
-    right: 2;
-    transition: transform 0.3s ease-in-out;
-}
-.close-btn img:hover {
-    filter: var(--icons-filter-hover);
-    transform: translateX(-2px);
 }
 
 .dash-buttons {

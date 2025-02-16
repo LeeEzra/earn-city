@@ -135,6 +135,17 @@ const initializeTables = async () => {
             email_logs VARCHAR(10) CHECK (email_logs IN('false', 'true')),
             notify_logins VARCHAR(10) CHECK (notify_logins IN('false', 'true'))
             )`
+        },
+        {
+            name: 'user_wallet',
+            query: `CREATE TABLE IF NOT EXISTS user_wallet
+            (
+            wallet_id SERIAL PRIMARY KEY,
+            user_id INT REFERENCES users(user_id),
+            wallet_status VARCHAR(10) CHECK (wallet_status IN ('pending', 'inactive', 'active', 'suspended')),
+            wallet_balance INT,
+            history TIMESTAMPTZ DEFAULT NOW()
+            )`
         }
         // Add other tables if needed here
         ];

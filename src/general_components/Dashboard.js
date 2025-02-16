@@ -14,6 +14,7 @@ import aboutIcon from '../images/icons/info.svg';
 import homeIcon from '../images/icons/home.svg';
 import AdminContent from '../admin_components/AdminContent';
 import notifcationIcon from '../images/icons/notifications.svg';
+import Sidebar from './Sidebar';
 
 function Dashboard() {
   const [loading, setLoading] = useState(true);
@@ -39,6 +40,7 @@ function Dashboard() {
       }
       const decodedToken = JSON.parse(atob(parts[1]));
       if (decodedToken.exp < Date.now() / 1000) {
+        alert("Session expired please log in again");
         throw new Error('Session expired');
       }
       setUser(decodedToken);
@@ -99,6 +101,7 @@ function Dashboard() {
   }
 
   if (!isAuthenticated) {
+    alert("Please login");
     return <Navigate to="/login" />;
   }
 
@@ -133,9 +136,7 @@ function Dashboard() {
           </div>
         )}
         <div className="controls-btns">
-          <div className="nav-toggle" onClick={toggleMenu}>
-            <img className="nav-toggle-icon" src={menuIcon} alt="Menu" />
-          </div>
+          <Sidebar />
           <ThemeToggle />
           <div className='notify-div' onClick={notifications}>
             {
@@ -146,26 +147,6 @@ function Dashboard() {
             <img className='notifications-icon' src={notifcationIcon} />
           </div>
         </div>
-      </div>
-      <div className={`nav-container ${isMenuOpen ? 'active' : ''}`}>
-        <div className="close-btn" onClick={toggleMenu}>
-          <img className="close-btn-img"  src={menuCloseIcon} alt="Close" />
-        </div>
-        <div className="nav-menu-button-container">
-          <div className="nav-menu-button" onClick={goHome}>
-            <img className="nav-menu-icon" src={homeIcon} alt="Home" /><a>Home</a>
-          </div>
-          <div  className="nav-menu-button" onClick={goToprofile}>
-            <img className="nav-menu-icon" src={profileSetupIcon} alt="Profile" /><a>Profile and Settings</a>
-          </div>
-          <div className="nav-menu-button">
-            <img className="nav-menu-icon" src={aboutIcon} alt="About" /><a>About us</a>
-          </div>
-          <div className="nav-menu-button" onClick={handleLogout}>
-            <img className="nav-menu-icon" src={powerOpt} alt="Logout" /><a>Logout</a>
-          </div>
-        </div>
-        <nav className="nav-menu"></nav>
       </div>
       <main>
         <section id="dashboard">
