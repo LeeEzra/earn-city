@@ -3,15 +3,8 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import profileMale from '../images/profile/boy.png';
 import profileFemale from '../images/profile/woman.png';
 import ProfileOther from '../images/profile/other.png';
-import menuIcon from '../images/icons/menu.svg';
-import menuCloseIcon from '../images/icons/close.svg';
-import powerOpt from '../images/icons/power_settings.svg';
 import ThemeToggle from './ThemeToggle';
-import axios from 'axios';
 import UserContent from '../user_components/UserContent';
-import profileSetupIcon from '../images/icons/settings.svg';
-import aboutIcon from '../images/icons/info.svg';
-import homeIcon from '../images/icons/home.svg';
 import AdminContent from '../admin_components/AdminContent';
 import notifcationIcon from '../images/icons/notifications.svg';
 import Sidebar from './Sidebar';
@@ -21,7 +14,6 @@ function Dashboard() {
   const [notificationi, setNotifications] = useState([]);
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(true);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -62,40 +54,9 @@ function Dashboard() {
       setNotifications(data);
   }; fetchNotifications();
   }, []);
-
-  const handleLogout = async () => {
-    if (!window.confirm('Are you sure you want to log out?')) return;
-
-    try {
-      setLoading(true);
-      await axios.post('/auth/logout', {}, { withCredentials: true });
-      localStorage.removeItem('token');
-      setIsAuthenticated(false);
-      navigate('/login');
-    } catch (error) {
-      console.error('Logout failed:', error.message);
-      alert('Logout failed. Please try again later.');
-    }
-    finally{
-      setLoading(false);
-    }
-  };
-  const goHome = () => {
-    navigate('/home');
-  }
-  const goToprofile = () => {
-    navigate('/profile')
-  }
-
   const notifications = () => {
     navigate('/notifications');
   }
-  
-
-  const toggleMenu = () => {
-    setIsMenuOpen((prev) => !prev);
-  };
-
   if (loading) {
     return <div>Loading...</div>;
   }

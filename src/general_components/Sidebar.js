@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { Navigate, useNavigate } from 'react-router-dom';
 import "../sidebar.css";
 import menuCloseIcon from '../images/icons/close.svg';
+import axios from 'axios';
 import menuOpenIcon from '../images/icons/menu.svg';
 import dashBoardIcon from '../images/icons/dashboard.svg';
 import profileSetupIcon from '../images/icons/settings.svg';
@@ -64,7 +65,6 @@ const Sidebar = () => {
         }
     
       };
-
     return (
         <>
             {/* Button to open sidebar */}

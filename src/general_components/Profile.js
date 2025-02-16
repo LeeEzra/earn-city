@@ -3,11 +3,11 @@ import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "rec
 import "../profile.css";
 import ProfilePic from '../images/profile/boy.png';
 import Sidebar from "./Sidebar";
-import coverPic from '../images/profile/cover-photo.PNG'
 const Profile = () => {
     const [darkMode, setDarkMode] = useState(false);
     const [notifications, setNotifications] = useState(true);
     const [loading, setLoading] = useState(true);
+    const [isAuthenticated, setIsAuthenticated] = useState(true);
     const [user, setUser] = useState(null);
 
     // Example user data
@@ -31,7 +31,7 @@ const Profile = () => {
     ];
     useEffect(() => {
         const token = localStorage.getItem('token');
-    
+        setLoading(true);
         if (!token) {
           setIsAuthenticated(false);
           setLoading(false);
@@ -55,6 +55,14 @@ const Profile = () => {
           setLoading(false);
         }
       }, []);
+      if (!isAuthenticated) {
+        alert("Please login");
+        return <Navigate to="/login" />;
+      }
+
+      if(loading) {
+        return <div>Loading...</div>
+      }
 
     return (<>
         {
