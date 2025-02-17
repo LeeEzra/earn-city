@@ -5,7 +5,7 @@ import "../profile.css";
 import ProfilePic from '../images/profile/boy.png';
 import Sidebar from "./Sidebar";
 import TransactionChart from './TransactionsChart';
-const Profile = ( userdata30 ) => {
+const Profile = () => {
     const [darkMode, setDarkMode] = useState(false);
     const [notifications, setNotifications] = useState(true);
     const [userData, setProfileDetails] = useState([]);
