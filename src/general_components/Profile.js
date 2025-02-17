@@ -4,7 +4,8 @@ import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "rec
 import "../profile.css";
 import ProfilePic from '../images/profile/boy.png';
 import Sidebar from "./Sidebar";
-const Profile = () => {
+import TransactionChart from './TransactionsChart';
+const Profile = ( userdata30 ) => {
     const [darkMode, setDarkMode] = useState(false);
     const [notifications, setNotifications] = useState(true);
     const [userData, setProfileDetails] = useState([]);
@@ -14,22 +15,14 @@ const Profile = () => {
 
     // Example user data
     const user2 = {
-        email: "test46@gmail.com",
-        location: "Nairobi, Kenya",
         bio: "Software Engineer | React Enthusiast | Tech Blogger",
         avatar: ProfilePic,
         cover:'',
-        balance: "$540.75",
-        accountStatus: "Active",
     };
 
-    const data = [
-        { name: "Jan", balance: 5 },
+    const graphData = [
+        { name: "Jan", balance: 1 },
         { name: "Feb", balance: 0 },
-        { name: "Mar", balance: 3 },
-        { name: "Apr", balance: 2 },
-        { name: "May", balance: 0 },
-        { name: "Jun", balance: 5 },
     ];
     const fetchProfile = async () => {
         const token = localStorage.getItem('token');
@@ -126,15 +119,23 @@ const Profile = () => {
 
             {/* Graph */}
             <div className="graph-card">
-                <h3>Account Growth</h3>
-                <ResponsiveContainer width="100%" height={250}>
-                    <LineChart data={data}>
-                        <XAxis dataKey="name" stroke="#8884d8" />
-                        <YAxis />
-                        <Tooltip />
-                        <Line type="monotone" dataKey="balance" stroke="#007bff" strokeWidth={2} />
-                    </LineChart>
-                </ResponsiveContainer>
+                <h3>RECENT TRANSACTIONS</h3>
+                {userData.wallet.transactions.length > 0 ? (
+                    <>{
+                    userData.wallet.transactions.map(transaction => (
+                        <div key={transaction.t_id}>
+                            <p><strong>{transaction.t_type}</strong> -{transaction.t_desc}</p>
+                            <p className={`transaction-status ${transaction.t_status === "confirmed" ? "confirmed" : transaction.t_status === "pending" ? "pending" : "declined"}`}>{transaction.t_status}</p>
+                            <p>Ksh. {transaction.t_amount}</p>
+                            <p>Date: {new Date(transaction.t_created_at).toLocaleString()}</p>
+                            <hr />
+                        </div>
+                    )) }
+                    <TransactionChart wallet={userData.wallet.transactions} />
+                    </>
+                ) : (
+                    <p><center>No recent transactions</center></p>
+                )}
             </div>
             {/* Toggle Switches */}
             <div className="toggles">

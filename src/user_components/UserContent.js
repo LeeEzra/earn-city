@@ -104,6 +104,9 @@ const UserContent = () => {
     const completedAnswers = Object.keys(selectedAnswers).length;
     return Math.round((completedAnswers / questions.length) * 100);
   };
+  const goToProf = () => {
+    navigate('/profile');
+  }
 
   return (
     <div className="user-dashboard-cup">
@@ -126,7 +129,7 @@ const UserContent = () => {
           <p>Maximum daily number of views is 100 views (Ksh 5,000)<br />Minimum daily number of views is 1 (Ksh 50)</p><br />
           <h3 className="dash-user-id">Your Code: {user.userId}</h3>
           <p>Do not share the code with others</p>
-            <button className="form-dashboard-button">View Account Status</button>
+            <button className="form-dashboard-button" onClick={goToProf}>View Account Status</button>
           <br />
         </div>
       ) : questions.length === 0 ? (
