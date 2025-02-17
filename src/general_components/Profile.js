@@ -106,7 +106,7 @@ const Profile = () => {
                 <p className="profile-bio">{user2.bio}</p>
                 <div className="profile-details">
                     <p><strong>Email:</strong> {user.email}</p>
-                    <p><strong>Country:</strong> {user2.location}</p>
+                    <p><strong>Country:</strong> {user.country}</p>
                 </div>
             </div>
 
@@ -118,7 +118,7 @@ const Profile = () => {
                 </div>
                 <div className="card">
                     <h3>Account Status</h3>
-                    <p className={`status ${userData.profile.profile_status === "active" ? "active" :  "pending"}`}>
+                    <p className={`status ${userData.profile.profile_status === "active" ? "active": userData.profile.profile_status === "pending" ?  "pending" : userData.profile.profile_status === "suspended" ? "suspended" : "inactive"}`}>
                         {userData.profile.profile_status}
                     </p>
                 </div>

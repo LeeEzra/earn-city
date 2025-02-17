@@ -103,7 +103,7 @@
 .status.pending {
     color: rgb(255, 166, 0);
 }
-.status.unknown {
+.status.suspended {
     color: orangered;
 }
 
