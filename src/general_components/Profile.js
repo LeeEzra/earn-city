@@ -1,6 +1,6 @@
 import React, { useEffect, useState} from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
-import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
+
 import "../profile.css";
 import ProfilePic from '../images/profile/boy.png';
 import Sidebar from "./Sidebar";

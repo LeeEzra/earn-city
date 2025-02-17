@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const UserContent = () => {
   const [questions, setQuestions] = useState([]);
   const [answeredQuestions, setAnsweredQuestions] = useState([]);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
   const [selectedAnswers, setSelectedAnswers] = useState({}); // Store selected answers for each question
   const [allSubmitted, setAllSubmitted] = useState(false); // Track if all questions are submitted
 
