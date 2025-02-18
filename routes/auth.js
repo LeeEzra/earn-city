@@ -348,7 +348,7 @@ router.post('/submit-answers', veryfyToken, async(req, res) => {
             if(existingAnswer.rows.length > 0) { return res.status(400).json({message: `Task ${questionId} has already been done`})}
             await db.query('INSERT INTO answers (question_id, user_id, answer) VALUES ($1, $2, $3)', [questionId, userId, answer]);
 
-            const notificationText = "Awesome😍🤑🙌! Thank You. Your response is currently being processed! You will be notified when your accoun is ready. You can go to settings and Enable email notifications🏃‍♂️";
+            const notificationText = "Awesome😍🤑🙌! Thank You. Your response is currently being processed! You will be notified when your account is ready. You can go to settings and Enable email notifications🏃‍♂️";
             const notifyStatus = 'unread';
             await db.query('INSERT INTO notifications (user_id, notification, status) VALUES ($1, $2, $3)', [userId, notificationText, notifyStatus]);
         }
