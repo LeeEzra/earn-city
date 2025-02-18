@@ -190,7 +190,7 @@ const clearNotes = async () => {
       </div>
       <main>
         <div className='notifications-body'>
-            <h2>Notifications</h2>
+            <div className='notification-header'><h2>Notifications</h2><br />
             {
               loading ? (
                 <div>Loading...</div>
@@ -204,7 +204,7 @@ const clearNotes = async () => {
               ) : (
                   <button className='notification-card-delete-button' onClick={clearNotes}><a>Clear all</a></button>
               )
-            }
+            } </div>
             {
                 notifications.length === 0 ? ( <>
                 <p>You Do not have any unread notifications. Notifications will appear here</p>
