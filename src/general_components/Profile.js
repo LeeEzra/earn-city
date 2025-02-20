@@ -1,10 +1,10 @@
 import React, { useEffect, useState} from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
-
+import { LineChart, Line, XAxis, YAxis,Tooltip, ResponsiveContainer } from 'recharts';
+import TransactionChart from './TransactionsChart';
 import "../profile.css";
 import ProfilePic from '../images/profile/boy.png';
 import Sidebar from "./Sidebar";
-import TransactionChart from './TransactionsChart';
 const Profile = () => {
     const [darkMode, setDarkMode] = useState(false);
     const [notifications, setNotifications] = useState(true);
@@ -21,8 +21,10 @@ const Profile = () => {
     };
 
     const graphData = [
-        { name: "Jan", balance: 1 },
-        { name: "Feb", balance: 0 },
+        { name: "Jan", balance: 10, balance2: 20 },
+        { name: "Feb", balance: 0, balance2: 10},
+        { name: "Mar", balance: 4, balance2: 5},
+        { name: "Apr", balance: 6, balance2: 30},
     ];
     const fetchProfile = async () => {
         const token = localStorage.getItem('token');
@@ -107,7 +109,7 @@ const Profile = () => {
             <div className="cards">
                 <div className="card">
                     <h3>Account Balance</h3>
-                    <p className="balance">KSH. {userData.wallet.wallet_balance}</p>
+                    <p className="balance">{(userData.wallet.wallet_balance).toLocaleString("en-US", {style: 'currency', currency: 'USD'})}</p>
                 </div>
                 <div className="card">
                     <h3>Account Status</h3>
@@ -119,19 +121,28 @@ const Profile = () => {
 
             {/* Graph */}
             <div className="graph-card">
-                <h3>RECENT TRANSACTIONS</h3>
+                <h3>RECENT TRANSACTIONS</h3><br />
+                <div className='graph-card-container'>
+                    <ResponsiveContainer width="100%" height={250}>
+                        <LineChart data={graphData}>
+                            <XAxis dataKey='name' stroke='#8884d8' />
+                            <YAxis />
+                            <Line type='monotone' dataKey='balance' stroke='#007bff' strokeWidth={2} />
+                            <Line type='monotone' dataKey='balance2' stroke='#000000' strokeWidth={2} />
+                        </LineChart>
+                    </ResponsiveContainer>
+                </div>
                 {userData.wallet.transactions.length > 0 ? (
-                    <>{
+                    <><div className='transactions-card-container'>{
                     userData.wallet.transactions.map(transaction => (
-                        <div key={transaction.t_id}>
+                        <div key={transaction.t_created_at} className='transaction-card'>
+                            <p><strong>Transaction ID: </strong>{transaction.t_id}</p>
                             <p><strong>{transaction.t_type}</strong> -{transaction.t_desc}</p>
-                            <p className={`transaction-status ${transaction.t_status === "confirmed" ? "confirmed" : transaction.t_status === "pending" ? "pending" : "declined"}`}>{transaction.t_status}</p>
-                            <p>Ksh. {transaction.t_amount}</p>
-                            <p>Date: {new Date(transaction.t_created_at).toLocaleString()}</p>
-                            <hr />
+                            <p className={`transaction-status ${transaction.t_status === "confirmed" ? "confirmed" : transaction.t_status === "pending" ? "pending" : "declined"}`}><strong>{transaction.t_status}</strong></p>
+                            <p><strong></strong>{(transaction.t_amount).toLocaleString('en-US', {style: 'currency', currency: 'USD'})}</p>
+                            <p><strong>Date: </strong><code>{new Date(transaction.t_created_at).toLocaleString("en-US")}</code></p>
                         </div>
-                    )) }
-                    <TransactionChart wallet={userData.wallet.transactions} />
+                    )) }</div>
                     </>
                 ) : (
                     <p><center>No recent transactions</center></p>

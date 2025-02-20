@@ -32,7 +32,6 @@ function TransactionChart ({ wallet }) {
     console.log('Prepared data', transactionData);
 
     const graphData = {
-        lables: transactionData.map((d) => d.date),
         datasets : [
             {
                 label: "credited(received)",
