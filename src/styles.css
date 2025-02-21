@@ -18,7 +18,7 @@
     --form-input-border: #ccc;
     --input-bg: rgb(248, 243, 243);
     --disabled-input-bg: #000000;
-    --form-bg-color: #c7fffc;
+    --form-bg-color: #feffffb6;
     --input-focus: #007BFF;
     --icons-filter: contrast(200%);
     --icons-filter-hover: contrast(300%);
@@ -27,8 +27,8 @@
     --user-card-header-bg: #007BFF;
     --user-card-header-color: rgb(255, 255, 255);
     --success-message-bg: rgba(255, 255, 255, 0.555);
-    --paying-list-container-bg: rgba(240, 236, 236, 0.5);
-    --nav-menu-buttons-hover-bg: rgb(224, 203, 210);
+    --paying-list-container-bg: rgba(255, 255, 255, 0.5);
+    --nav-menu-buttons-hover-bg: rgb(255, 255, 255);
     --form-button-color-danger-bg: rgb(248, 82, 82);
     --form-button-color-danger-bg-hover: rgb(247, 37, 37);
 
