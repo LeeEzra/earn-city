@@ -26,7 +26,7 @@ app.use(session({
         tableName: 'session',
         createTableIfMissing: false,
     }),
-    secret: 'your_secret_key',
+    secret: process.env.JWT_SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: { maxAge: 1000 * 60 * 60 * 24 } // 1 day

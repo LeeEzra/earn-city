@@ -12,5 +12,4 @@ const pool = new Pool({
       }
     : false,
 });
-console.log('Database configuration is set.');
 module.exports = pool;
