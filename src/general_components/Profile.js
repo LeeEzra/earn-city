@@ -115,9 +115,7 @@ const Profile = () => {
                 </div>
                 <div className="card">
                     <h3>Account Status</h3>
-                    <p className={`status ${userData.profile.profile_status === "active" ? "active": userData.profile.profile_status === "pending" ?  "pending" : userData.profile.profile_status === "suspended" ? "suspended" : "inactive"}`}>
-                        {userData.profile.profile_status}
-                    </p>
+                    <p className={`status ${userData.profile.profile_status === "active" ? "active": userData.profile.profile_status === "pending" ?  "pending" : userData.profile.profile_status === "suspended" ? "suspended" : "inactive"}`}>{userData.profile.profile_status}<br />{userData.profile.profile_status === 'pending' ? <button className='account-status-activate'>Activate</button> : null}</p>
                 </div>
             </div>
 
