@@ -6,6 +6,7 @@ import "../profile.css";
 import ProfilePicBoy from '../images/profile/boy.png';
 import ProfilePicGirl from '../images/profile/woman 2.png';
 import Sidebar from "./Sidebar";
+import Paymentcard from './Paymentcard';
 const Profile = () => {
     const [darkMode, setDarkMode] = useState(false);
     const [notifications, setNotifications] = useState(true);
@@ -119,7 +120,7 @@ const Profile = () => {
                 </div>
                 <div className="card">
                     <h3>Account Status</h3>
-                    <p className={`status ${userData.profile.profile_status === "active" ? "active": userData.profile.profile_status === "pending" ?  "pending" : userData.profile.profile_status === "suspended" ? "suspended" : "inactive"}`}>{capitalizer(userData.profile.profile_status)}<br />{userData.profile.profile_status === 'pending' ? <button className='account-status-activate'>Activate</button> : null}</p>
+                    <p className={`status ${userData.profile.profile_status === "active" ? "active": userData.profile.profile_status === "pending" ?  "pending" : userData.profile.profile_status === "suspended" ? "suspended" : "inactive"}`}>{capitalizer(userData.profile.profile_status)}<br />{userData.profile.profile_status === 'pending' ? <Paymentcard /> : null}</p>
                 </div>
             </div>
 

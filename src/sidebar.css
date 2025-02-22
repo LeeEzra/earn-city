@@ -12,9 +12,6 @@
     box-shadow: 2px 0 5px var(--shadow-color);
     z-index: 100;
 }
-.nav-container.active {
-    right: 0;
-}
 .close-btn {
     border: none;
     height: 40px;
@@ -39,26 +36,6 @@
 .sidebar.open {
     right: 0;
 }
-
-.sidebar ul {
-    list-style: none;
-    padding: 0;
-}
-
-.sidebar ul li {
-    padding: 15px;
-}
-
-.sidebar ul li a {
-    color: white;
-    text-decoration: none;
-    display: block;
-}
-
-.sidebar ul li:hover {
-    background: #444;
-}
-
 /* Close button */
 .close-btn2 {
     position: absolute;

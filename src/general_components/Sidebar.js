@@ -13,7 +13,6 @@ const Sidebar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const sidebarRef = useRef(null);
     const navigate = useNavigate();
-    const [isAuthenticated, setIsAuthenticated] = useState(true);
     const [loading, setLoading] = useState(true);
 
     // Toggle sidebar visibility
@@ -79,23 +78,23 @@ const Sidebar = () => {
 
             {/* Sidebar */}
             <div ref={sidebarRef} className={`sidebar ${isOpen ? "open" : ""}`}>
-            <div className="close-btn" onClick={toggleMenu}>
+              <div className="close-btn" onClick={toggleMenu}>
                 <img className="close-btn-img"  src={menuCloseIcon} alt="Close" />
-            </div>
+              </div>
             <div className="nav-menu-button-container">
-          <div className="nav-menu-button" onClick={goToDashboard}>
-            <img className="nav-menu-icon" src={dashBoardIcon} alt="Dashboard" /><a>Dashboard</a>
-          </div>
-          <div  className="nav-menu-button" onClick={goToProfile}>
-            <img className="nav-menu-icon" src={profileSetupIcon} alt="Profile" /><a>Profile</a>
-          </div>
-          <div className="nav-menu-button">
-            <img className="nav-menu-icon" src={aboutIcon} alt="About" /><a>About us</a>
-          </div>
-          <div className="nav-menu-button" onClick={handleLogout}>
-            <img className="nav-menu-icon" src={powerOpt} alt="Logout" /><a>Logout</a>
-          </div>
-        </div>
+                <div className="nav-menu-button" onClick={goToDashboard}>
+                  <img className="nav-menu-icon" src={dashBoardIcon} alt="Dashboard" /><a>Dashboard</a>
+                </div>
+                <div  className="nav-menu-button" onClick={goToProfile}>
+                  <img className="nav-menu-icon" src={profileSetupIcon} alt="Profile" /><a>Profile</a>
+                </div>
+                <div className="nav-menu-button">
+                  <img className="nav-menu-icon" src={aboutIcon} alt="About" /><a>About us</a>
+                </div>
+                <div className="nav-menu-button" onClick={handleLogout}>
+                  <img className="nav-menu-icon" src={powerOpt} alt="Logout" /><a>Logout</a>
+                </div>
+            </div>
             </div>
         </>
     );
