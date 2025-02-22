@@ -59,6 +59,10 @@ const Paymentcard = () => {
                         <img src={payPalIcon}></img>
                     </div>
                 </div>
+                <div>
+                    <p>Your account requires activation before usage. We support Safaricom MPESA, Airtel Money, Binance and Paypal.</p><hr color="blue"/>
+                    <p>Select your activation method:</p>
+                </div>
                 <button className='payment-card-close-button' onClick={togglePaymentCard}>Go Back</button>
             </div>
         </div>
