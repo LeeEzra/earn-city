@@ -81,6 +81,9 @@ const Profile = () => {
       if(loading) {
         return <div>Loading...</div>
       }
+      const currencyForamatter = (value) => {
+        return value.toLocaleString('en-US', {style: 'currency', currency: 'USD'});
+      };
 
     return (<>
         {
@@ -125,7 +128,7 @@ const Profile = () => {
                     <ResponsiveContainer width="100%" height={250}>
                         <LineChart data={graphData}>
                             <XAxis dataKey='name' stroke='#8884d8' />
-                            <YAxis />
+                            <YAxis tickFormatter={currencyForamatter}/>
                             <Line type='monotone' dataKey='balance' stroke='#007bff' strokeWidth={2} />
                             <Line type='monotone' dataKey='balance2' stroke='#000000' strokeWidth={2} />
                         </LineChart>
