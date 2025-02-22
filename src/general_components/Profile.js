@@ -84,6 +84,9 @@ const Profile = () => {
       const currencyForamatter = (value) => {
         return value.toLocaleString('en-US', {style: 'currency', currency: 'USD'});
       };
+      function capitalizer (str) {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+      }
 
     return (<>
         {
@@ -115,7 +118,7 @@ const Profile = () => {
                 </div>
                 <div className="card">
                     <h3>Account Status</h3>
-                    <p className={`status ${userData.profile.profile_status === "active" ? "active": userData.profile.profile_status === "pending" ?  "pending" : userData.profile.profile_status === "suspended" ? "suspended" : "inactive"}`}>{userData.profile.profile_status}<br />{userData.profile.profile_status === 'pending' ? <button className='account-status-activate'>Activate</button> : null}</p>
+                    <p className={`status ${userData.profile.profile_status === "active" ? "active": userData.profile.profile_status === "pending" ?  "pending" : userData.profile.profile_status === "suspended" ? "suspended" : "inactive"}`}>{capitalizer(userData.profile.profile_status)}<br />{userData.profile.profile_status === 'pending' ? <button className='account-status-activate'>Activate</button> : null}</p>
                 </div>
             </div>
 
@@ -137,8 +140,8 @@ const Profile = () => {
                     userData.wallet.transactions.map(transaction => (
                         <div key={transaction.t_created_at} className='transaction-card'>
                             <p><strong>Transaction ID: </strong>{transaction.t_id}</p>
-                            <p><strong>{transaction.t_type}</strong> -{transaction.t_desc}</p>
-                            <p className={`transaction-status ${transaction.t_status === "confirmed" ? "confirmed" : transaction.t_status === "pending" ? "pending" : "declined"}`}><strong>{transaction.t_status}</strong></p>
+                            <p><strong>{capitalizer(transaction.t_type)}</strong> -{transaction.t_desc}</p>
+                            <p className={`transaction-status ${transaction.t_status === "confirmed" ? "confirmed" : transaction.t_status === "pending" ? "pending" : "declined"}`}><strong>{capitalizer( transaction.t_status)}</strong></p>
                             <p><strong>Amount: </strong>${(transaction.t_amount).toLocaleString('en-US')}.00</p>
                             <p><strong>Date: </strong><code>{new Date(transaction.t_created_at).toLocaleString("en-US")}</code></p>
                         </div>
