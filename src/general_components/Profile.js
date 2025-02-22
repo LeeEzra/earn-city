@@ -115,7 +115,7 @@ const Profile = () => {
             <div className="cards">
                 <div className="card">
                     <h3>Account Balance</h3>
-                    <p className="balance">{currencyForamatter(userData.wallet.wallet_balance).toLocaleString("en-US")}</p>
+                    <p className="balance">${(userData.wallet.wallet_balance).toLocaleString("en-US")}.00</p>
                 </div>
                 <div className="card">
                     <h3>Account Status</h3>
