@@ -8,6 +8,7 @@ import binanceIcon from '../images/icons/binance.png';
 
 const Paymentcard = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [paymentMethod, setPaymentMethod] = useState('');
     const paymentcardRef = useRef(null);
     const navigate = useNavigate();
     const [isAuthenticated, setIsAuthenticated] = useState(true);
@@ -62,6 +63,13 @@ const Paymentcard = () => {
                 <div>
                     <p>Your account requires activation before usage. We support Safaricom MPESA, Airtel Money, Binance and Paypal.</p><hr color="blue"/>
                     <p>Select your activation method:</p>
+                    <select type="text" name='country' id='country' value={paymentMethod} onChange={(e) => setPaymentMethod(e.target.value)} required>
+                        <option value="" disabled selected>Select Your activation Option</option>
+                        <option value="safaricom-mpesa">Safaricom MPESA</option>
+                        <option value="airtel-money">Airtel Money</option>
+                        <option value="binance">Binance</option>
+                        <option value="paypal">PayPal</option>
+                    </select>
                 </div>
                 <button className='payment-card-close-button' onClick={togglePaymentCard}>Go Back</button>
             </div>
