@@ -3,7 +3,8 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import { LineChart, Line, XAxis, YAxis,Tooltip, ResponsiveContainer } from 'recharts';
 import TransactionChart from './TransactionsChart';
 import "../profile.css";
-import ProfilePic from '../images/profile/boy.png';
+import ProfilePicBoy from '../images/profile/boy.png';
+import ProfilePicGirl from '../images/profile/woman 2.png';
 import Sidebar from "./Sidebar";
 const Profile = () => {
     const [darkMode, setDarkMode] = useState(false);
@@ -15,8 +16,8 @@ const Profile = () => {
 
     // Example user data
     const user2 = {
-        bio: "Software Engineer | React Enthusiast | Tech Blogger",
-        avatar: ProfilePic,
+        bio: "No About",
+        avatar: ProfilePicBoy,
         cover:'',
     };
 
@@ -101,7 +102,7 @@ const Profile = () => {
 
             {/* Profile Info */}
             <div className="profile-info">
-                <img src={user2.avatar} alt="Profile" className="profile-avatar" />
+                <img src={user.gender === 'male' ? ProfilePicBoy : ProfilePicGirl} alt="Profile" className="profile-avatar" />
                 <h2 className="profile-name">{user.firstName} {user.middleName} {user.lastName}</h2>
                 <p className="profile-bio">{user2.bio}</p>
                 <div className="profile-details">
