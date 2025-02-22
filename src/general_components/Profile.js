@@ -150,21 +150,6 @@ const Profile = () => {
                     <p><center>No recent transactions</center></p>
                 )}
             </div>
-            {/* Toggle Switches */}
-            <div className="toggles">
-                <div className="toggle">
-                    <span>Dark Mode</span>
-                    <div className={`toggle-switch ${darkMode ? "active" : ""}`} onClick={() => setDarkMode(!darkMode)}>
-                        <div className="toggle-circle"></div>
-                    </div>
-                </div>
-                <div className="toggle">
-                    <span>Notifications</span>
-                    <div className={`toggle-switch ${notifications ? "active" : ""}`} onClick={() => setNotifications(!notifications)}>
-                        <div className="toggle-circle"></div>
-                    </div>
-                </div>
-            </div>
         </div>
     )}
         </>
