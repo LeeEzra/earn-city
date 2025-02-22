@@ -21,10 +21,9 @@ const Profile = () => {
     };
 
     const graphData = [
-        { name: "Jan", balance: 10, balance2: 20 },
-        { name: "Feb", balance: 0, balance2: 10},
-        { name: "Mar", balance: 4, balance2: 5},
-        { name: "Apr", balance: 6, balance2: 30},
+        {name: "Dec", balance: 0, balance2: 0},
+        { name: "Jan", balance: 0, balance2: 0 },
+        { name: "Feb", balance: 5, balance2: 0},
     ];
     const fetchProfile = async () => {
         const token = localStorage.getItem('token');
