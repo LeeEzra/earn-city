@@ -66,6 +66,7 @@
 .payment-icons-container {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     border-radius: 10px;
 }
 .payment-icons-container img {
@@ -75,7 +76,7 @@
 }
 .paypal-icon, .binance-icon, .airtel-money-icon, .safaricom-mpesa-icon {
     background-color: black;
-    margin: 5px;
+    margin: 2px;
     border-radius: 10px;
     width: 100px;
     height: 40px;
