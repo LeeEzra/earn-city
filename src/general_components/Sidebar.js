@@ -87,7 +87,7 @@ const Sidebar = () => {
             <img className="nav-menu-icon" src={dashBoardIcon} alt="Dashboard" /><a>Dashboard</a>
           </div>
           <div  className="nav-menu-button" onClick={goToProfile}>
-            <img className="nav-menu-icon" src={profileSetupIcon} alt="Profile" /><a>Profile and Settings</a>
+            <img className="nav-menu-icon" src={profileSetupIcon} alt="Profile" /><a>Profile</a>
           </div>
           <div className="nav-menu-button">
             <img className="nav-menu-icon" src={aboutIcon} alt="About" /><a>About us</a>
