@@ -50,18 +50,17 @@
 .payment-card-close-button {
     border: none;
     border-radius: 10px;
-    background-color: rgb(30, 33, 197);
+    background-color: rgb(197, 55, 30);
     padding: 5px;
     cursor: pointer;
     width: 100px;
     height: 30px;
     color: #ffffff;
-    bottom: 10px;
-    position: absolute;
+    bottom: 10%;
     transition: 0.3s;
 }
 .payment-card-close-button:hover {
-    background-color: rgb(3, 3, 122);
+    background-color: rgb(160, 20, 2);
     color: aliceblue;
     transform: translate3d(4px, 1px, 2.5px);
 }
