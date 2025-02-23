@@ -104,12 +104,15 @@ const Profile = () => {
             {/* Profile Info */}
             <div className="profile-info">
                 <img src={user.gender === 'male' ? ProfilePicBoy : ProfilePicGirl} alt="Profile" className="profile-avatar" />
-                <h2 className="profile-name">{user.firstName} {user.middleName} {user.lastName}</h2>
-                <p className="profile-bio">{user2.bio}</p>
-                <div className="profile-details">
-                    <p><strong>Email:</strong> {user.email}</p>
-                    <p><strong>Country:</strong> {user.country}</p>
+                <div className='profile-def'>
+                   <h2 className="profile-name">{user.firstName} {user.middleName} {user.lastName}</h2>
+                   <p className="profile-bio">{user2.bio}</p>
+                   <div className="profile-details">
+                        <p><strong>Email:</strong> {user.email}</p>
+                        <p><strong>Country:</strong> {user.country}</p>
+                    </div> 
                 </div>
+                
             </div>
 
             {/* Account Cards */}
@@ -126,7 +129,7 @@ const Profile = () => {
 
             {/* Graph */}
             <div className="graph-card">
-                <h3>RECENT TRANSACTIONS</h3><br />
+                <h3>ACCOUNT GROWTH</h3><br />
                 <div className='graph-card-container'>
                     <ResponsiveContainer width="100%" height={250}>
                         <LineChart data={graphData}>
@@ -137,22 +140,26 @@ const Profile = () => {
                         </LineChart>
                     </ResponsiveContainer>
                 </div>
+                </div>
                 {userData.wallet.transactions.length > 0 ? (
-                    <><div className='transactions-card-container'>{
-                    userData.wallet.transactions.map(transaction => (
-                        <div key={transaction.t_created_at} className='transaction-card'>
+                    <> <div className='transactions-card-body'>
+                        <h3>Recent Transactions</h3>
+                        <div className='transaction-card-container'>
+                           {
+                           userData.wallet.transactions.map(transaction => (
+                           <div key={transaction.t_created_at} className='transaction-card'>
                             <p><strong>Transaction ID: </strong>{transaction.t_id}</p>
                             <p><strong>{capitalizer(transaction.t_type)}</strong> -{transaction.t_desc}</p>
                             <p className={`transaction-status ${transaction.t_status === "confirmed" ? "confirmed" : transaction.t_status === "pending" ? "pending" : "declined"}`}><strong>{capitalizer( transaction.t_status)}</strong></p>
                             <p><strong>Amount: </strong>${(transaction.t_amount).toLocaleString('en-US')}.00</p>
                             <p><strong>Date: </strong><code>{new Date(transaction.t_created_at).toLocaleString("en-US")}</code></p>
-                        </div>
-                    )) }</div>
+                        </div>)) }</div></div>
+                        
                     </>
                 ) : (
                     <p><center>No recent transactions</center></p>
                 )}
-            </div>
+            
         </div>
     )}
         </>

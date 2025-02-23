@@ -495,7 +495,7 @@ input:focus {
 }
 .paying-list {
     font-weight: bold;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: DMSans;
     color: var(--navbar-text);
 }
 .paying-list-container {

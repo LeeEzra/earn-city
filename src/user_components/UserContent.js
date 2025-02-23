@@ -123,9 +123,9 @@ const UserContent = () => {
           <p>Be paid by advertising (EARNCITY PRODUCTS) on your WhatsApp status. You will be given products to post on your WhatsApp status, Telegram stries and Facebook stories. You will get paid in the following ways:</p>
           <div className='paying-list-container'>
           <ol className='paying-list'>
-            <li>1 view is Ksh 50</li>
-            <li>20 views is Ksh 1,000</li>
-            <li>40 views is Ksh 2,000</li>
+            <li>1 view is $0.40</li>
+            <li>20 views is $8.00</li>
+            <li>40 views is $16.00</li>
           </ol>
           </div>
           <p>Maximum daily number of views is 100 views (Ksh 5,000)<br />Minimum daily number of views is 1 (Ksh 50)</p><br />
