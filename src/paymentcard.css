@@ -56,6 +56,8 @@
     width: 100px;
     height: 30px;
     color: #ffffff;
+    bottom: 10px;
+    position: absolute;
     transition: 0.3s;
 }
 .payment-card-close-button:hover {
@@ -80,4 +82,49 @@
     border-radius: 10px;
     width: 100px;
     height: 40px;
+}
+.payment-method-content-body {
+    justify-content: center;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    text-align: left;
+    margin: 10px;
+    align-content: center;
+    justify-content: center;
+       
+}
+.payment-method-content-body p {
+    padding: 10px;
+}
+
+.safaricom-selected-card ul, .airtel-money-selected-card  ul, .paypal-method-selected ul, .binance-method-selected ul{
+    color: black;
+    list-style: none;
+}
+.safaricom-selected-card {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+.safaricom-selected-card input, .airtel-money-selected-card input, .paypal-method-selected input, .binance-method-selected input{
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+.payment-confirmation-button {
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(13, 199, 53);
+    padding: 10px;
+    cursor: pointer;
+    height: max-content;
+    color: #ffffff;
+    transition: 0.3s;
+    margin: 20px;
+}
+.payment-confirmation-button:hover {
+    background-color: green;
+    transform: translate3d(4px, 1px, 2.5px);
 }

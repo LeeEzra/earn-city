@@ -73,7 +73,7 @@
 /* Account Cards */
 .cards {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     padding: 15px;
 }
 
@@ -83,7 +83,7 @@
     border-radius: 10px;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
     width: 50%;
-    margin: 4px;
+    margin: 2px;
 }
 
 .balance {

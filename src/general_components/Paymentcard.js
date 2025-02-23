@@ -13,8 +13,6 @@ const Paymentcard = () => {
     const [paymentMethod, setPaymentMethod] = useState('');
     const paymentcardRef = useRef(null);
     const navigate = useNavigate();
-    const [isAuthenticated, setIsAuthenticated] = useState(true);
-    const [loading, setLoading] = useState(true);
 
     // Toggle sidebar visibility
     const togglePaymentCard = () => setIsOpen(!isOpen);
@@ -72,7 +70,7 @@ const Paymentcard = () => {
                 </div>
                 <div>
                     <p>Your account requires activation before usage. We support Safaricom MPESA, Airtel Money, Binance, Paypal, Yellow Card and Bybit.</p><hr color="blue"/>
-                    <p>A temporary hold of USD $14 will be placed on the Account and then refunded immediately. Select your activation method:</p>
+                    <p>A temporary hold of USD $12 will be placed on the Account and then refunded immediately. Select your activation method:</p>
                     <select type="text" name='country' id='country' value={paymentMethod} onChange={(e) => setPaymentMethod(e.target.value)} required>
                         <option value="" disabled selected>Select Your activation Option</option>
                         <option value="safaricom-mpesa">Safaricom MPESA</option>
@@ -82,6 +80,60 @@ const Paymentcard = () => {
                         <option value="yellow-card">Yellow Card</option>
                         <option value="Bybit">Bybit</option>
                     </select>
+                </div>
+                <div className="payment-method-content-body">
+                    {
+                        paymentMethod === 'safaricom-mpesa' ?
+                        <div className="safaricom-selected-card">
+                            <p>Kindly make a deposit of $12(KES 1, 500) using the secretary's office Safaricom Mpesa Number. A temporary hold of the amount and the refunded after account activation. The payment details are as in bellow:</p>
+                            <ul>
+                                <li>
+                                    <strong>Number: </strong><code>0748702425</code>
+                                </li>
+                            </ul>
+                            <input type="text" placeholder="Paste Mpesa confirmation message" id="mpesa-message-confirmation"></input>
+                            <button className="payment-confirmation-button" onClick={() => {togglePaymentCard(); handleReset();}}>Confirm And Finish</button>
+                        </div> : null
+                    }
+                    {
+                        paymentMethod === 'airtel-money' ?
+                        <div className="airtel-money-selected-card">
+                            <p>Kindly make a deposit of $12(KES 1, 500) using the secretary's office Airtel Money Number. A temporary hold of the amount and the refunded after account activation. The payment details are as in bellow:</p>
+                            <ul>
+                                <li>
+                                    <strong>Artel Money Number: </strong><code>0103933199</code>
+                                </li>
+                            </ul>
+                            <input type="text" placeholder="Paste Aiterl Money confirmation message" id="airtel-money-message-confirmation"></input>
+                            <button className="payment-confirmation-button" onClick={() => {togglePaymentCard(); handleReset();}}>Confirm And Finish</button>
+                        </div> : null
+                    }
+                    {
+                        paymentMethod === 'paypal' ?
+                        <div className="paypal-method-selected">
+                            <p>Kindly make a deposit of $12(KES 1, 500) using the secretary's office PayPal id. A temporary hold of the amount and the refunded after account activation. The payment details are as in bellow:</p>
+                            <ul>
+                                <li>
+                                    <strong>Paypal id: </strong>42478764
+                                </li>
+                            </ul>
+                            <input type="text" placeholder="Paste Paypal confirmation message" id="paypal-message-confirmation"></input>
+                            <button className="payment-confirmation-button" onClick={() => {togglePaymentCard(); handleReset();}}>Confirm And Finish</button>
+                        </div> : null
+                    }
+                    {
+                        paymentMethod === 'binance' ?
+                        <div className="binance-method-selected">
+                            <p>Kindly make a deposit of $12(KES 1, 500) using the secretary's office Binance id. A temporary hold of the amount and the refunded after account activation. The payment details are as in bellow:</p>
+                            <ul>
+                                <li>
+                                    <strong>Binance Id: </strong>42478764
+                                </li>
+                            </ul>
+                            <input type="text" placeholder="Paste Binance confirmation message" id="binance-message-confirmation"></input>
+                            <button className="payment-confirmation-button" onClick={() => {togglePaymentCard(); handleReset();}}>Confirm And Finish</button>
+                        </div> : null
+                    }
                 </div>
                 <button className='payment-card-close-button' onClick={() => {togglePaymentCard(); handleReset();}}>Go Back</button>
             </div>

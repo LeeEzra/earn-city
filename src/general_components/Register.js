@@ -167,7 +167,6 @@ function Register() {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         placeholder="Password"
-        autoComplete='new-password'
         required
       />
       <input
@@ -175,7 +174,6 @@ function Register() {
         value={confirmPassword}
         onChange={(e) => setConfirmPassword(e.target.value)}
         placeholder="Confirm Password"
-        autoComplete='new-password'
         required
       />
       

@@ -9,7 +9,6 @@ import Sidebar from "./Sidebar";
 import Paymentcard from './Paymentcard';
 const Profile = () => {
     const [darkMode, setDarkMode] = useState(false);
-    const [notifications, setNotifications] = useState(true);
     const [userData, setProfileDetails] = useState([]);
     const [loading, setLoading] = useState(true);
     const [isAuthenticated, setIsAuthenticated] = useState(true);
