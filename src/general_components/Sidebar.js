@@ -13,6 +13,7 @@ const Sidebar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const sidebarRef = useRef(null);
     const navigate = useNavigate();
+    const [isAuthenticated, setIsAuthenticated] = useState(true);
     const [loading, setLoading] = useState(true);
 
     // Toggle sidebar visibility
