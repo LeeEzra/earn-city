@@ -127,32 +127,37 @@ const Profile = () => {
             </div>
 
             {/* Graph */}
-            <div className="graph-card">
-                <h3>ACCOUNT GROWTH</h3><br />
-                <div className='graph-card-container'>
-                    <ResponsiveContainer width="100%" height={250}>
-                        <LineChart data={graphData}>
+            
+                {userData.wallet.transactions.length > 0 ? (
+                    <> {
+                      <div className="graph-card">
+                        <h3>ACCOUNT GROWTH</h3><br />
+                        <div className='graph-card-container'>
+                          <ResponsiveContainer width="100%" height={250}>
+                            <LineChart data={graphData}>
                             <XAxis dataKey='name' stroke='#8884d8' />
                             <YAxis tickFormatter={currencyForamatter}/>
                             <Line type='monotone' dataKey='balance' stroke='#007bff' strokeWidth={2} />
                             <Line type='monotone' dataKey='balance2' stroke='#000000' strokeWidth={2} />
-                        </LineChart>
-                    </ResponsiveContainer>
-                </div>
-                </div>
-                {userData.wallet.transactions.length > 0 ? (
-                    <> <div className='transactions-card-body'>
+                            </LineChart>
+                          </ResponsiveContainer>
+                        </div>
+                      </div> }
+                      <div className='transactions-card-body'>
                         <h3>Recent Transactions</h3>
                         <div className='transaction-card-container'>
                            {
                            userData.wallet.transactions.map(transaction => (
                            <div key={transaction.t_created_at} className='transaction-card'>
-                            <p><strong>Transaction ID: </strong>{transaction.t_id}</p>
-                            <p><strong>{capitalizer(transaction.t_type)}</strong> -{transaction.t_desc}</p>
-                            <p className={`transaction-status ${transaction.t_status === "confirmed" ? "confirmed" : transaction.t_status === "pending" ? "pending" : "declined"}`}><strong>{capitalizer( transaction.t_status)}</strong></p>
-                            <p><strong>Amount: </strong>${(transaction.t_amount).toLocaleString('en-US')}.00</p>
-                            <p><strong>Date: </strong><code>{new Date(transaction.t_created_at).toLocaleString("en-US")}</code></p>
-                        </div>)) }</div></div>
+                              <p><strong>Transaction ID: </strong>{transaction.t_id}</p>
+                              <p><strong>{capitalizer(transaction.t_type)}</strong> -{transaction.t_desc}</p>
+                              <p className={`transaction-status ${transaction.t_status === "confirmed" ? "confirmed" : transaction.t_status === "pending" ? "pending" : "declined"}`}><strong>{capitalizer( transaction.t_status)}</strong></p>
+                              <p><strong>Amount: </strong>${(transaction.t_amount).toLocaleString('en-US')}.00</p>
+                              <p><strong>Date: </strong><code>{new Date(transaction.t_created_at).toLocaleString("en-US")}</code></p>
+                            </div>)) 
+                            }
+                        </div>
+                      </div>
                         
                     </>
                 ) : (
