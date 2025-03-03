@@ -53,7 +53,7 @@ function Register() {
       });
       navigate('/login');
     } catch (error) {
-      setError(error.response?.data || 'Registration failed, check your connection');
+      setError('Registration failed, Server error or connection lost');
     } finally {
       setLoading(false);
     }

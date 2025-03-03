@@ -271,6 +271,34 @@ router.delete('/clear-notifications', veryfyToken, async(req, res) => {
     }
 });
 
+//Creating deposit transactions 
+router.post('/make-deposits', veryfyToken, async(req, res) => {
+    const userId = req.userData.userId;
+    const { tAmount } = req.body;
+    const tStatus = 'pending';
+    const tType = 'credited(received)';
+    const tDesc = 'Received from personal local wallet account';
+    try {
+        await db.query("BEGIN");
+        const checkTQuery = 'SELECT 1 FROM wallet_transactions WHERE user_id = $1 AND t_status = $2';
+        const { rows: moreT } = await db.query(checkTQuery, [userId, tStatus]);
+
+        if (moreT.length >= 3) {
+            await db.query('ROLLBACK');
+            return res.status(400).send('You cannot do more deposits while you already have more than 3 pending deposit transactions, contact support');
+        }
+        const createDepositSql = `INSERT INTO wallet_transactions (user_id, t_status, t_type, t_desc, t_amount) VALUES ($1, $2, $3, $4, $5)`;
+        await db.query(createDepositSql, [userId, tStatus, tType, tDesc, tAmount]);
+        await db.query('COMMIT');
+        res.status(200).send('Deposit initiated successfully');
+    }
+    catch {
+        await db.query('ROLLBACK');
+        console.error('Failed to initiate a deposit');
+        res.status(500).send('Failed to initiate a deposit. Please try again later');
+    }
+});
+
 //fetching profile details
 
 router.get('/fetch-user-profile', veryfyToken, async(req, res) => {

@@ -95,10 +95,8 @@
 .payment-method-content-body p {
     padding: 10px;
 }
-
-.safaricom-selected-card ul, .airtel-money-selected-card  ul, .paypal-method-selected ul, .binance-method-selected ul{
+.payment-card-desc-text {
     color: black;
-    list-style: none;
 }
 .safaricom-selected-card {
     display: flex;

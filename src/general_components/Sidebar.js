@@ -16,10 +16,8 @@ const Sidebar = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(true);
     const [loading, setLoading] = useState(true);
 
-    // Toggle sidebar visibility
     const toggleMenu = () => setIsOpen(!isOpen);
 
-    // Close sidebar when clicking outside
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
@@ -69,15 +67,12 @@ const Sidebar = () => {
 
     return (
         <>
-            {/* Button to open sidebar */}
             <div className="menu-open-btn" onClick={toggleMenu}>
                 <img className="nav-toggle-icon"  src={menuOpenIcon} alt="Close" />
             </div>
 
-            {/* Backdrop (clicking it closes the sidebar) */}
             {isOpen && <div className="backdrop" onClick={() => setIsOpen(false)}></div>}
-
-            {/* Sidebar */}
+            
             <div ref={sidebarRef} className={`sidebar ${isOpen ? "open" : ""}`}>
               <div className="close-btn" onClick={toggleMenu}>
                 <img className="close-btn-img"  src={menuCloseIcon} alt="Close" />

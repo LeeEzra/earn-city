@@ -20,13 +20,12 @@ function Login() {
         return;
       }
 
-      const decodedToken = JSON.parse(atob(parts[1])); // Decode the token payload
+      const decodedToken = JSON.parse(atob(parts[1]));
       if (decodedToken.exp < Date.now() / 1000) {
         console.error('session expired');
         return;
       }
 
-      // If token is valid and not expired, redirect to dashboard
       navigate('/dashboard');
     } catch (error) {
       console.error('Error decoding the token in Login:', error);
@@ -44,10 +43,7 @@ function Login() {
       if (response.status === 200) {
         const { token } = response.data;
 
-        // Save token to localStorage
         localStorage.setItem('token', token);
-
-        // Redirect to dashboard
         navigate('/dashboard');
       }
     } catch (error) {
@@ -63,8 +59,7 @@ function Login() {
     <div className="login-body-container">
       <form onSubmit={handleSubmit}>
         <h2>Login to your account</h2>
-        {error && <p className="form-error-text">{error}</p>} {/* Display error message */}
-
+        {error && <p className="form-error-text">{error}</p>}
         <input
           type="text"
           name="email"

@@ -13,8 +13,7 @@ const Profile = () => {
     const [loading, setLoading] = useState(true);
     const [isAuthenticated, setIsAuthenticated] = useState(true);
     const [user, setUser] = useState(null);
-
-    // Example user data
+    
     const user2 = {
         bio: "No About",
         avatar: ProfilePicBoy,
@@ -22,9 +21,9 @@ const Profile = () => {
     };
 
     const graphData = [
-        {name: "Dec, 2024", balance: 0, balance2: 0},
-        { name: "Jan, 2025", balance: 0, balance2: 0 },
-        { name: "Feb, 2025", balance: 5, balance2: 0},
+        {name: "Dec, 2024", balance: 20, balance2: 8},
+        { name: "Jan, 2025", balance: 40, balance2: 15 },
+        { name: "Feb, 2025", balance: 50, balance2: 50},
     ];
     const fetchProfile = async () => {
         const token = localStorage.getItem('token');
@@ -113,8 +112,6 @@ const Profile = () => {
                 </div>
                 
             </div>
-
-            {/* Account Cards */}
             <div className="cards">
                 <div className="card">
                     <h3>Account Balance</h3>
@@ -122,11 +119,9 @@ const Profile = () => {
                 </div>
                 <div className="card">
                     <h3>Account Status</h3>
-                    <p className={`status ${userData.profile.profile_status === "active" ? "active": userData.profile.profile_status === "pending" ?  "pending" : userData.profile.profile_status === "suspended" ? "suspended" : "inactive"}`}>{capitalizer(userData.profile.profile_status)}<br />{userData.profile.profile_status === 'pending' ? <Paymentcard /> : null}</p>
+                    <p className={`status ${userData.profile.profile_status === "active" ? "active": userData.profile.profile_status === "pending" ?  "pending" : userData.profile.profile_status === "suspended" ? "suspended" : "inactive"}`}>{capitalizer(userData.profile.profile_status)}</p>{userData.profile.profile_status === 'pending' ? <Paymentcard /> : null}
                 </div>
             </div>
-
-            {/* Graph */}
             
                 {userData.wallet.transactions.length > 0 ? (
                     <> {
@@ -161,7 +156,7 @@ const Profile = () => {
                         
                     </>
                 ) : (
-                    <p><center>No recent transactions</center></p>
+                    <center>No recent transactions</center>
                 )}
             
         </div>

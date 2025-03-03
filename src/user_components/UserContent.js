@@ -119,7 +119,7 @@ const UserContent = () => {
           <div className='success-icon'>
             <div className='checkmark'></div>
           </div>
-          <h3>Congratulations {user.firstName}! Your account Approval is in progress.</h3>
+          <h3>Congratulations {user.firstName} {user.lastName}!😊 Your account Approval is in progress.</h3>
           <p>Be paid by advertising (EARNCITY PRODUCTS) on your WhatsApp status. You will be given products to post on your WhatsApp status, Telegram stries and Facebook stories. You will get paid in the following ways:</p>
           <div className='paying-list-container'>
           <ol className='paying-list'>

@@ -17,8 +17,8 @@ const port = process.env.PORT || 3000;
 // Middleware setup
 app.use(bodyParser.json());
 app.use(cors({
-    origin: '*', //allow all request from all origins
-    credentials: true //allow cookies and credentials to be sent
+    origin: '*',
+    credentials: true
 }));
 app.use(session({
     store: new pgSession({
