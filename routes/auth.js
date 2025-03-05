@@ -106,7 +106,6 @@ router.post('/register', async (req, res) => {
     } catch (error) {
         console.error('Error during registration:', error);
         res.status(500).send('Server error, try again later');
-        await db.query('ROLLBACK');
     }
 });
 
