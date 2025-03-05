@@ -143,7 +143,6 @@ const initializeTables = async () => {
             wallet_id SERIAL PRIMARY KEY,
             user_id INT REFERENCES users(user_id),
             wallet_status VARCHAR(10) CHECK (wallet_status IN ('pending', 'inactive', 'active', 'suspended')),
-            wallet_balance INT,
             history TIMESTAMPTZ DEFAULT NOW()
             )`
         },
@@ -156,7 +155,7 @@ const initializeTables = async () => {
             t_type VARCHAR(20) CHECK (t_type IN ('credited(received)', 'debited(sent)')),
             t_desc TEXT,
             t_created_at TIMESTAMPTZ DEFAULT NOW(),
-            t_amount INT
+            t_amount NUMERIC(10, 2) NOT NULL
             )`
         }
         // Add other tables if needed here

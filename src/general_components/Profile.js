@@ -115,7 +115,7 @@ const Profile = () => {
             <div className="cards">
                 <div className="card">
                     <h3>Account Balance</h3>
-                    <p className="balance">${(userData.wallet.wallet_balance).toLocaleString("en-US")}.00</p>
+                    <p className="balance">${!userData.wallet.wallet_balance ? (0).toLocaleString("en-US") : (userData.wallet.wallet_balance).toLocaleString("en-US")}</p>
                 </div>
                 <div className="card">
                     <h3>Account Status</h3>
@@ -147,7 +147,7 @@ const Profile = () => {
                               <p><strong>Transaction ID: </strong>{transaction.t_id}</p>
                               <p><strong>{capitalizer(transaction.t_type)}</strong> -{transaction.t_desc}</p>
                               <p className={`transaction-status ${transaction.t_status === "confirmed" ? "confirmed" : transaction.t_status === "pending" ? "pending" : "declined"}`}><strong>{capitalizer( transaction.t_status)}</strong></p>
-                              <p><strong>Amount: </strong>${(transaction.t_amount).toLocaleString('en-US')}.00</p>
+                              <p><strong>Amount: </strong>${(transaction.t_amount).toLocaleString('en-US')}</p>
                               <p><strong>Date: </strong><code>{new Date(transaction.t_created_at).toLocaleString("en-US")}</code></p>
                             </div>)) 
                             }

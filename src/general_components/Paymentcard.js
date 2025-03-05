@@ -14,7 +14,7 @@ const Paymentcard = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const [tAmount, setTAmount] = useState(null)
     const paymentcardRef = useRef(null);
-    const [errorT, setErrorT] = useState(null);
+    const [message, setMessage] = useState(null);
     const navigate = useNavigate();
 
     // Toggle sidebar visibility
@@ -55,7 +55,7 @@ const Paymentcard = () => {
               });
               const text = await response.text();
               if(response.ok) {
-                setErrorMessage(`Success: ${text}`);
+                setMessage(`Success: ${text}`);
               }
               else {
                 setErrorMessage(`Error: ${text}`);
@@ -75,6 +75,8 @@ const Paymentcard = () => {
             <button className='account-status-activate-button' onClick={togglePaymentCard}>Activate</button>
             {isOpen && <div className="backdrop-payment-card" onClick={() => setIsOpen(false)}></div>}
             <div ref={paymentcardRef} className={`payment-card ${isOpen ? "open" : ""}`}>
+                {errorMessage && <div className="error-mesage-card"><p className="error-message-text">{errorMessage}</p></div>}
+                {message && <div className="ui-message-card"><p className="ui-message-text">{message}</p></div>}
                 <div className="payment-icons-container">
                     <div className="safaricom-mpesa-icon">
                         <img src={safaricomMpesa}></img>
@@ -95,7 +97,7 @@ const Paymentcard = () => {
                         <img src={byBitLogo}></img>
                     </div>
                 </div>
-                {errorMessage && <p color='red' className="payment-card-error-text">{errorMessage}</p>}
+                
                 <div className="payment-card-desc-text">Your account requires activation before usage. We support Safaricom MPESA, Airtel Money, Binance, Paypal, Yellow Card and Bybit. A temporary hold of USD $12 will be placed on the Account and then refunded immediately. <br /><br /><strong>Select your activation method:</strong></div>
                 <div className="select-body">
                     <select type="text" name='country' id='country' value={paymentMethod} onChange={(e) => setPaymentMethod(e.target.value)} required>

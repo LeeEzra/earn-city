@@ -282,6 +282,10 @@ router.post('/make-deposits', veryfyToken, async(req, res) => {
         await db.query("BEGIN");
         const checkTQuery = 'SELECT 1 FROM wallet_transactions WHERE user_id = $1 AND t_status = $2';
         const { rows: moreT } = await db.query(checkTQuery, [userId, tStatus]);
+        if(!tAmount || tAmount < 1) {
+            await db.query('ROLLBACK');
+            return res.status(400).send('Transaction amount cannot be less than $1 USD');
+        }
 
         if (moreT.length >= 3) {
             await db.query('ROLLBACK');
@@ -304,11 +308,15 @@ router.post('/make-deposits', veryfyToken, async(req, res) => {
 router.get('/fetch-user-profile', veryfyToken, async(req, res) => {
     const userId = req.userData.userId;
     try {
-        const userProfileSql = `SELECT users.user_id AS user_id, answers.user_id AS answer_user_id, answers.id AS answer_id, answers.question_id AS answer_question_id, answer, answers.created_at AS answer_created_at, profile_id, profile_status, profile_settings.user_id AS profile_settings_user_id, email_logs, notify_logins, wallet_status, wallet_balance, user_wallet.user_id AS user_wallet_user_id, t_id, t_status, t_created_at, wallet_transactions.user_id AS wallet_transcations_user_id, t_type, wallet_transactions.t_amount, t_desc, t_created_at FROM users
+        const userProfileSql = `SELECT users.user_id, answers.user_id AS answer_user_id, answers.id AS answer_id, answers.question_id AS answer_question_id, answers.answer, answers.created_at AS answer_created_at, profile_settings.profile_id, profile_settings.profile_status, profile_settings.user_id AS profile_settings_user_id, profile_settings.email_logs, profile_settings.notify_logins, user_wallet.wallet_status, user_wallet.user_id AS user_wallet_user_id, wallet_transactions.t_id, wallet_transactions.t_status, wallet_transactions.t_created_at, wallet_transactions.user_id AS wallet_transactions_user_id, wallet_transactions.t_type, wallet_transactions.t_amount, COALESCE(wallet_balance.total_amount, 0) AS wallet_balance FROM users
         LEFT JOIN answers ON users.user_id = answers.user_id
         LEFT JOIN profile_settings ON users.user_id = profile_settings.user_id
         LEFT JOIN user_wallet ON users.user_id = user_wallet.user_id
-        LEFT JOIN wallet_transactions ON users.user_id = wallet_transactions.user_id WHERE users.user_id = $1`;
+        LEFT JOIN wallet_transactions ON users.user_id = wallet_transactions.user_id
+        LEFT JOIN (SELECT user_id, SUM(t_amount) AS total_amount
+        FROM wallet_transactions WHERE t_status = 'confirmed'
+        GROUP BY user_id) AS wallet_balance ON users.user_id = wallet_balance.user_id
+        WHERE users.user_id = $1;`;
 
         function organizedData (rows) {
             if(!rows.length === 0) return null;
