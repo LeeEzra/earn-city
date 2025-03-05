@@ -47,9 +47,7 @@ function Login() {
         navigate('/dashboard');
       }
     } catch (error) {
-      setError(
-        error.response?.data || 'Login failed, Check your connection'
-      );
+      setError('Login failed, Check your connection');
     } finally {
       setLoading(false);
     }
