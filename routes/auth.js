@@ -287,7 +287,7 @@ router.post('/make-deposits', veryfyToken, async(req, res) => {
             return res.status(400).send('Transaction amount cannot be less than $1 USD');
         }
 
-        if (moreT.length >= 3) {
+        if (moreT.length >= 4) {
             await db.query('ROLLBACK');
             return res.status(400).send('You cannot do more deposits while you already have more than 3 pending deposit transactions, contact support');
         }
