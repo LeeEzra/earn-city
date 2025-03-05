@@ -86,9 +86,8 @@ router.post('/register', async (req, res) => {
         await db.query(profileSetupSql, [newUserId, accStatus, emailLogs, notifyLogs]);
 
         const walletState = 'inactive';
-        const walletBallance = 5;
-        const initUserWalletSql = 'INSERT INTO user_wallet (user_id, wallet_status, wallet_balance) VALUES ($1, $2, $3)';
-        await db.query(initUserWalletSql, [newUserId, walletState, walletBallance]);
+        const initUserWalletSql = 'INSERT INTO user_wallet (user_id, wallet_status) VALUES ($1, $2)';
+        await db.query(initUserWalletSql, [newUserId, walletState]);
 
         const initTAmt = 5;
         const iniTDesc = 'Welcome bonus';
@@ -106,6 +105,7 @@ router.post('/register', async (req, res) => {
     } catch (error) {
         console.error('Error during registration:', error);
         res.status(500).send('Server error, try again later');
+        await db.query('ROLLBACK');
     }
 });
 
